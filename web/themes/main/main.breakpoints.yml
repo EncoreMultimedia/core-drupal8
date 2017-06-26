@@ -1,0 +1,87 @@
+main.encore.default:
+  label: default
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.yoda:
+  label: yoda
+  mediaQuery: '(min-width: 28.750em)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.fatYoda:
+  label: Fat Yoda
+  mediaQuery: '(min-width: 34.375em)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.ewok:
+  label: Ewok
+  mediaQuery: '(min-width: 42.500em)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.luke:
+  label: Luke
+  mediaQuery: '(min-width: 47.500em)'
+  weight: 4
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.vader:
+  label: Vader
+  mediaQuery: '(min-width: 53.750em)'
+  weight: 5
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.Jabba:
+  label: Jabba
+  mediaQuery: '(min-width: 62.500em)'
+  weight: 6
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.atst:
+  label: ATST
+  mediaQuery: '(min-width: 68.750em)'
+  weight: 7
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.fatAtst:
+  label: Fat ATST
+  mediaQuery: '(min-width: 75.000em)'
+  weight: 8
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.atat:
+  label: ATAT
+  mediaQuery: '(min-width: 81.250em)'
+  weight: 9
+  multipliers:
+    - 1x
+    - 1.5x
+
+main.encore.deathstar:
+  label: Death Star
+  mediaQuery: '(min-width: 100.000em)'
+  weight: 10
+  multipliers:
+    - 1x
+    - 1.5x

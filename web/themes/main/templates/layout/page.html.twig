@@ -1,0 +1,64 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+<article class="layout-container page">
+
+  {# Header region #}
+  {% if page.header %}
+    <header role="banner">
+      {{ page.header }}
+    </header>
+  {% endif %}
+
+  {# check for both the menus, if they exist then add them to the header region #}
+  {% if page.primary_menu %}
+    {{ page.primary_menu }}
+  {% endif %}
+
+  {% if page.secondary_menu|striptags|trim %}
+    {{ page.secondary_menu }}
+  {% endif %}
+  {# end of menus #}
+
+  {{ page.breadcrumb }}
+
+  {# if  you have a highlight or a help message that needs to be shown#}
+  {% if page.highlighted|striptags|trim %}
+    {{ page.highlighted }}
+  {% endif %}
+  {# end of highlights and help messages #}
+
+  <main role="main">
+    {# link is in html.html.twig #}
+    <a id="main-content" tabindex="-1"></a>
+    {# if the page has a side bar then add sidebar and content wrappers to body #}
+    {% if page.sidebar|striptags|trim %}
+      <article class="layout-container">
+        <aside class="layout-sidebar-first" role="complementary">
+          {{ page.sidebar }}
+        </aside>
+        <section class="layout-content">
+          {{ page.content }}
+        </section>
+      </article>
+      {# no sidebar just add content wrapper to the body #}
+      {% else %}
+        <article class="layout-content">
+          {{ page.content }}
+        </article>
+    {% endif %}
+  </main>
+
+  {# for what ever crazy reason we dont have a footer exclude the markup #}
+  {% if page.footer|striptags|trim %}
+    <footer role="contentinfo">
+      {{ page.footer }}
+    </footer>
+  {% endif %}
+
+</article>

@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  php:
+    volumes:
+      - DrupalComposer:/var/www/html:nocopy # Replace volume to this to use docker-sync for macOS users
+
+volumes:
+  DrupalComposer:
+    external: true

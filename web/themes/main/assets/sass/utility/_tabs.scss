@@ -1,0 +1,25 @@
+// Tabs.
+.region-content ul.tabs {
+  max-width: $max_width;
+  width: 100%;
+  margin: 0 auto 5px;
+  border-bottom: 2px solid $color_tab_border_bottom;
+  padding: 0 0 4px;
+
+  li {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  a {
+    margin-top: 5px;
+    background-color: $color_tab_background;
+    color: $color_tab_color;
+    display: block;
+
+    &:hover {
+      background-color: $color_tab_hover;
+      box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.2);
+    }
+  }
+}

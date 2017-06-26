@@ -1,0 +1,15 @@
+global:
+  version: 1.0
+  css:
+    theme:
+      public/css/utility/utility.css: {}
+      public/css/styles.css: {}
+      public/css/forms.css: {}
+      public/css/blocks.css: {}
+  js:
+    public/js/scripts.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+

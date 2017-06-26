@@ -1,0 +1,32 @@
+// =============================================================================
+// Utility Mixins
+// =============================================================================
+
+// Clearfix
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// if $context is true, switch to rem
+@function em($px, $context-or-rem: $base-font-size) {
+  @if ($context-or-rem == true) {
+    @return $px / strip_unit($base-font-size) * 1rem;
+  } @else {
+    @return $px / strip_unit($context-or-rem) * 1em;
+  }
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip_unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

@@ -1,0 +1,34 @@
+{
+  "name": "core-drupal8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/EncoreMultimedia/core-drupal8.git",
+  "author": "TheLostCookie <TheLostCookie@3454003.no-reply.drupal.org>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "^1.4.0",
+    "browser-sync": "^2.18.12",
+    "css-mqpacker": "^6.0.1",
+    "cssnano": "^3.10.0",
+    "eslint": "^3.19.0",
+    "event-stream": "^3.3.4",
+    "fixed-sticky": "^0.1.7",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-babili": "^0.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-clone": "^1.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "postcss-critical-split": "^2.5.1",
+    "run-sequence": "^1.2.2"
+  },
+  "scripts": {
+    "lint:js": "eslint app/ webpack.*.js --cache",
+    "start": "gulp",
+    "build": "gulp build"
+  }
+}

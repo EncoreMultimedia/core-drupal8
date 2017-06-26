@@ -1,0 +1,14 @@
+.region {
+  .region-wrapper {
+    padding: $padding_mobile;
+
+    @media (min-width: $media_ewok) {
+      padding: $padding_tablet;
+    }
+
+    @media (min-width: $media_jabba) {
+      padding: $padding_desktop;
+    }
+  }
+
+}
