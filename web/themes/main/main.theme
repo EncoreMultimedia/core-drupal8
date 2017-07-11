@@ -60,6 +60,12 @@ function main_preprocess_maintenance_page(&$variables) {
   $variables['#attached']['library'][] = 'main/maintenance_page';
 }
 
+function main_preprocess_page(&$variables) {
+  kint($variables);
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+  kint($variables);
+}
+
 /**
  * Implements hook_preprocess_HOOK() for node.html.twig.
  */

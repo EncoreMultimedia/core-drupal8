@@ -101,7 +101,7 @@ gulp.task('js', () =>
   gulp.src(ASSETS.scripts)
     .pipe(sourcemaps.init())
     .pipe(babel({
-      presets: ['env'],
+      presets: ["es2015"],
     }))
     .pipe(babili({
       mangle: {
@@ -119,10 +119,10 @@ gulp.task('build', () =>
 
 gulp.task('default', () => {
   browserSync.init({
-    proxy: 'localhost:9000',
+    proxy: 'localhost:9080',
     //reloadDelay: 2000,
     serveStatic: [{
-      route: '/themes/basic/public',
+      route: '/themes/main/public',
       dir: 'public',
     }],
   });

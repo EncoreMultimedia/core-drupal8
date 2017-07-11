@@ -2,12 +2,8 @@
   "presets": [
     [
       "env",
-      {
-        "modules": false,
-        "targets": {
-          "browsers": ["last 2 Chrome versions"]
-        }
-      }
+      "es2015"
     ]
-  ]
+  ],
+  "sourceMap": false
 }
