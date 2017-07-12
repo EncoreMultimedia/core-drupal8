@@ -1,14 +1,8 @@
-.region {
-  .region-wrapper {
-    padding: $padding_mobile;
+.region-wrapper {
+  max-width: $max_width;
+  margin: 0 auto;
+}
 
-    @media (min-width: $media_ewok) {
-      padding: $padding_tablet;
-    }
-
-    @media (min-width: $media_jabba) {
-      padding: $padding_desktop;
-    }
-  }
-
+body {
+  hyphens: auto;
 }

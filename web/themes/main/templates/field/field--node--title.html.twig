@@ -1,0 +1,11 @@
+
+{%
+  set classes = [
+    'field--label-' ~ label_display,
+  ]
+%}
+<span{{ attributes.addClass(classes) }}>
+  {%- for item in items -%}
+    {{ item.content }}
+  {%- endfor -%}
+</span>

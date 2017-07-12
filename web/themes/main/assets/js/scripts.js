@@ -1,15 +1,9 @@
-/**
- * Here we have a javascript file that made to tailor to Johnny's jQuery needs.
- * Must conform to fan boy rules!
- * This file will inherit drupal settings, behaviors, and all passed variables
- * Will use jQuery onScroll and resize event listener
- * The on load was removed for reason that are magical to the world.
- */
-
+import {cube} from './Library'
 
 
 (function (Drupal, $) {
-
+  console.log(cube(10));
+  console.log('hello jeff');
   //inherit drupal behaviors
   Drupal.behaviors.main = {
     attach: function (context, settings) {

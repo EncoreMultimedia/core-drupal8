@@ -8,6 +8,7 @@ core: 8.x
 libraries:
   - main/global
 
+
 regions:
   header: Header
   primary_menu: 'Primary menu'

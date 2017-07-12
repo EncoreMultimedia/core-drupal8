@@ -1,0 +1,12 @@
+
+{%
+  set classes = [
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+  ]
+%}
+<span{{ attributes.addClass(classes) }}>
+  {%- for item in items -%}
+    {{ item.content }}
+  {%- endfor -%}
+</span>

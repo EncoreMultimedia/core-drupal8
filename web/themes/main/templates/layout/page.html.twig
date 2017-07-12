@@ -1,67 +1,48 @@
-{#
-/**
- * @file
- * Theme override to display a single page.
- * @see template_preprocess_page()
- * @see html.html.twig
- */
-#}
 {% set title = node.title.value | raw %}
 <article class="page-container">
-  {# Header region #}
+
   <header role="banner">
-    <h1>{{ title }}</h1>
-    {{ page.header }}
+    <div class="region-wrapper">
+      <h1>{{ title }}</h1>
+      {{ page.header }}
+    </div>
   </header>
 
-  {# check for both the menus, if they exist then add them to the header region #}
-  {% if page.primary_menu %}
-    {{ page.primary_menu }}
-  {% endif %}
-
-  {% if page.secondary_menu %}
-    {{ page.secondary_menu }}
-  {% endif %}
-  {# end of menus #}
+  {{ page.primary_menu }}
+  {{ page.secondary_menu }}
 
   {{ page.breadcrumb }}
-  {# if  you have a highlight or a help message that needs to be shown#}
-  {% if page.highlighted %}
-    {{ page.highlighted }}
-  {% endif %}
-  {# end of highlights and help messages #}
+
+  {{ page.highlighted }}
+
+  {{ page.help }}
 
   <main role="main">
-    {# link is in html.html.twig #}
-    <a id="main-content" tabindex="-1"></a>
-    {# if the page has a side bar then add sidebar and content wrappers to body #}
-    {% if page.sidebar %}
-      <article class="container">
-        <aside class="sidebar-first" role="complementary">
+    <div class="main-content-wrapper">
+      <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+      <section class="layout-content">
+        {{ page.content }}
+      </section>{# /.layout-content #}
+
+      {% if page.sidebar %}
+        <aside class="sidebar" role="complementary">
           {{ page.sidebar }}
         </aside>
-        <section class="content">
-          {{ page.content }}
-        </section>
-      </article>
-      {# no sidebar just add content wrapper to the body #}
-      {% else %}
-        <article class="content">
-          {{ page.content }}
-        </article>
-    {% endif %}
+      {% endif %}
+    </div>
   </main>
 
-  {# for what ever crazy reason we dont have a footer exclude the markup #}
 
-  <footer role="contentinfo" class="footer">
+  <footer role="contentinfo">
     <div class="region-wrapper">
       {{ page.footer }}
       <div class="copy-write">
         <p>&copy;{{ "now"|date("Y") }} {{ site_name }}. All rights reserved. Site by <a href="http://www.encoremultimedia.com/" target="_blank">Encore</a></p>
       </div>
     </div>
+
   </footer>
 
 
-</article>
+</article>{# /.layout-container #}
