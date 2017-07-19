@@ -1,7 +1,11 @@
 @import "init";
 @import "mixins/global-mixins";
+@import "mixins/animations-mixin";
 @import "global/global";
 @import "global/typography";
 @import "global/header";
 @import "global/content";
 @import "global/footer";
+@import "menus/burger";
+@import "menus/main-menu";
+@import "global/test";

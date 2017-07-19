@@ -1,7 +1,7 @@
 {% set title = node.title.value | raw %}
 <article class="page-container">
 
-  <header role="banner">
+  <header role="banner" class="region">
     <div class="region-wrapper">
       <h1>{{ title }}</h1>
       {{ page.header }}
@@ -9,6 +9,7 @@
   </header>
 
   {{ page.primary_menu }}
+
   {{ page.secondary_menu }}
 
   {{ page.breadcrumb }}
@@ -34,7 +35,7 @@
   </main>
 
 
-  <footer role="contentinfo">
+  <footer role="contentinfo" class="region">
     <div class="region-wrapper">
       {{ page.footer }}
       <div class="copy-write">

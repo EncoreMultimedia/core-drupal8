@@ -14,7 +14,6 @@ $base-font-size: 16px;
 $primary_font: '';
 $alternative_font: '';
 
-
 // =============================================================================
 // Basic tab styling colors
 // =============================================================================
@@ -48,48 +47,68 @@ $color_font_black:      #313131;
 // padding
 
 //mobile
-$padding_mobile:        em(22, true);
-$padding_mobile_left:   em(22, true);
-$padding_mobile_right:  em(22, true);
-$padding_mobile_top:    em(22, true);
-$padding_mobile_bottom: em(22, true);
+$padding_mobile_top:        em(15, true);
+$padding_mobile_side:       em(15, true);
+$padding_mobile_bottom:     em(15, true);
+$padding_mobile:            $padding_mobile_top $padding_mobile_side $padding_mobile_bottom;
+
 //tablet
-$padding_tablet:        em(58, true);
-$padding_tablet_left:   em(58, true);
-$padding_tablet_right:  em(58, true);
-$padding_tablet_top:    em(58, true);
-$padding_tablet_bottom: em(58, true);
+$padding_tablet_top:        em(30, true);
+$padding_tablet_side:       em(30, true);
+$padding_tablet_bottom:     em(30, true);
+$padding_tablet:            $padding_tablet_top $padding_tablet_side $padding_tablet_bottom;
+
 //desktop
-$padding_desktop:       em(66, true);
-$padding_mobile_left:   em(66, true);
-$padding_mobile_right:  em(66, true);
-$padding_mobile_top:    em(66, true);
-$padding_mobile_bottom: em(66, true);
+$padding_desktop_top:       em(60, true);
+$padding_desktop_side:      em(60, true);
+$padding_desktop_bottom:    em(60, true);
+$padding_desktop:           $padding_desktop_top $padding_desktop_side $padding_desktop_bottom;
 
+// Max width of containers
 $max_width: em(1300, true);
-
 // =============================================================================
 // Media Queries
 // =============================================================================
 
-$media_mouse_droid:     em(300);
-$media_mouse_droid_max: em(299);
-$media_yoda:            em(460);
-$media_yoda_max:        em(459);
-$media_fat_yoda:        em(550);
-$media_fat_yoda_max:    em(549);
-$media_ewok:            em(680); // tablet
-$media_ewok_max:        em(679);
-$media_luke:            em(760);
-$media_luke_max:        em(759);
-$media_vader:           em(860);
-$media_vader_max:       em(859);
-$media_jabba:           em(1000); // desktop
-$media_jabba_max:       em(999);
-$media_atst:            em(1100);
-$media_atst_max:        em(1099);
-$media_fat_atst:        em(1200);
-$media_atat:            em(1300);
-$media_atat_max:        em(1299);
-$media_deathstar:       em(1600);
-$media_deathstar_max:   em(1599);
+@import "breakpoint";
+
+//Breakpoint Width
+$bpw_mouse_droid:     em(300);
+$bpw_mouse_droid_max: em(299);
+$bpw_yoda:            em(460);
+$bpw_yoda_max:        em(459);
+$bpw_fat_yoda:        em(550);
+$bpw_fat_yoda_max:    em(549);
+$bpw_ewok:            em(680); // tablet
+$bpw_ewok_max:        em(679);
+$bpw_luke:            em(760);
+$bpw_luke_max:        em(759);
+$bpw_vader:           em(860);
+$bpw_vader_max:       em(859);
+$bpw_jabba:           em(1000); // desktop
+$bpw_jabba_max:       em(999);
+$bpw_atst:            em(1100);
+$bpw_atst_max:        em(1099);
+$bpw_fat_atst:        em(1200);
+$bpw_atat:            em(1300);
+$bpw_atat_max:        em(1299);
+$bpw_deathstar:       em(1600);
+$bpw_deathstar_max:   em(1599);
+$bpw_nexu:            em(1900);
+$bpw_dianoga:         em(2400);
+
+//Breakpoint Height landscape
+$bph_mouse_droid:     em(352);
+$bph_yoda:            em(500);
+$bph_fat_yoda:        em(600);
+$bph_ewok:            em(860); // tablet
+$bph_luke:            em(920);
+$bph_vader:           em(660);
+$bph_jabba:           em(644); // desktop
+$bph_atst:            em(580);
+$bph_atat:            em(540);
+$bph_deathstar:       em(825);
+$bph_nexu:            em(855);
+$bph_Dianoga:         em(1200);
+
+

@@ -1,0 +1,161 @@
+
+@mixin navRight() {
+  @keyframes navFadeInRight {
+    0% {
+
+      transform: translateX(100vw);
+    }
+    100% {
+
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes navFadeOutRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100vw);
+    }
+  }
+
+  .navFadeInRight {
+    animation-name: navFadeInRight;
+  }
+
+  .navFadeOutRight {
+    animation-name: navFadeOutRight;
+  }
+}
+
+@mixin navLeft() {
+  @keyframes navFadeInLeft {
+    0% {
+
+      transform: translateX(-100vw);
+    }
+    100% {
+
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes navFadeOutLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100vw);
+    }
+  }
+
+  .navFadeInLeft {
+    animation-name: navFadeInLeft;
+  }
+
+  .navFadeOutLeft {
+    animation-name: navFadeOutLeft;
+  }
+}
+
+@mixin fadeInTop() {
+  @keyframes fadeInTop {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fadeInDown {
+    animation-name: fadeInTop;
+  }
+}
+
+
+@mixin fadeInRight() {
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .fadeInRight {
+    animation-name: fadeInRight;
+  }
+
+}
+
+@mixin fadeInDown() {
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fadeInDown {
+    animation-name: fadeInDown;
+  }
+}
+
+@mixin fadeInLeft() {
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .fadeInLeft {
+    animation-name: fadeInLeft;
+  }
+}
+
+@mixin animation($value) {
+
+  @if($value == 'nav_right') {
+    @include navRight;
+  }
+
+  @if($value == 'nav_left') {
+    @include navLeft;
+  }
+
+  @if($value == 'fadeInTop') {
+    @include fadeInTop;
+  }
+
+  @if($value == 'fadeInRight') {
+    @include fadeInRight;
+  }
+
+  @if($value == 'fadeInDown') {
+    @include fadeInDown;
+  }
+
+  @if($value == 'fadeInLeft') {
+    @include fadeInLeft;
+  }
+
+}
+
+
+

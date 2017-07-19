@@ -1,0 +1,219 @@
+.name-field-text-box {
+  @include clearfix;
+
+  .field-item {
+    box-sizing: border-box;
+    padding: em(10);
+    max-width: em(320);
+    margin: 0 auto;
+    text-align: center;
+    animation-duration: 1.4s;
+    animation-fill-mode: both;
+    color: $color_white;
+    margin-bottom: 20px;
+
+    @include breakpoint($bpw_jabba) {
+      width: 25%;
+      max-width: none;
+      float: left;
+    }
+
+    &:nth-child(1) {
+      background-color: red;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInDown;
+      }
+    }
+
+    &:nth-child(2) {
+      background-color: #5cb85c;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInRight;
+      }
+    }
+
+    &:nth-child(3) {
+      background-color: #00b0ff;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInTop;
+      }
+    }
+
+    &:nth-child(4) {
+      background-color: purple;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInLeft;
+      }
+    }
+
+    &:nth-child(5) {
+      background-color: red;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInRight;
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInDown;
+      }
+    }
+
+    &:nth-child(6) {
+      background-color: #5cb85c;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInRight;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInRight;
+      }
+    }
+
+    &:nth-child(7) {
+      background-color: #00b0ff;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      opacity: 0;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInTop;
+      }
+    }
+
+    &:nth-child(8) {
+      background-color: purple;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInRight;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInLeft;
+      }
+    }
+
+    &:nth-child(9) {
+      background-color: red;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInDown;
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInDown;
+      }
+    }
+
+    &:nth-child(10) {
+      background-color: #5cb85c;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInDown;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInRight;
+      }
+    }
+
+    &:nth-child(11) {
+      background-color: #00b0ff;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInDown;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInTop;
+      }
+    }
+
+    &:nth-child(12) {
+      background-color: purple;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInDown;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInLeft;
+      }
+    }
+
+    &:nth-child(13) {
+      background-color: red;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInTop;
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInDown;
+      }
+    }
+
+    &:nth-child(14) {
+      background-color: #5cb85c;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInTop;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInRight;
+      }
+    }
+
+    &:nth-child(15) {
+      background-color: #00b0ff;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInTop;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInTop;
+      }
+    }
+
+    &:nth-child(16) {
+      background-color: purple;
+      animation-duration: 1.5s;
+      animation-fill-mode: both;
+      animation-name: fadeInTop;
+
+      h2, p {
+        animation-duration: 3s;
+        animation-fill-mode: both;
+        animation-name: fadeInLeft;
+      }
+    }
+  }
+}
+
+@include animation('fadeInLeft');
+@include animation('fadeInRight');
+@include animation('fadeInDown');
+@include animation('fadeInTop');
