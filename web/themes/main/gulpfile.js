@@ -179,6 +179,7 @@ gulp.task('imagemin', () => {
 gulp.task('default', () => {
   browserSync.init({
     proxy: 'localhost:9080',
+    injectChanges: true,
     //reloadDelay: 2000,
     serveStatic: [{
       route: '/themes/main/public',
