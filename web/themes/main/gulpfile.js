@@ -125,7 +125,7 @@ gulp.task('sass:watch', () =>
     .pipe(postcss([
       autoprefixer(AUTOPREFIXER_BROWSERS),
       mqpacker({sort: true}),
-      cssnano({ reduceIdents: false }),
+      cssnano({ reduceIdents: false, autoprefixer: false }),
     ]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(PUBLIC.css))
@@ -142,13 +142,13 @@ gulp.task('sass:build', () => {
     .pipe(postcss([
       criticalsplit({output: 'critical'}),
       //mqpacker({sort: true}),
-      cssnano({ reduceIdents: false }),
+      cssnano({ reduceIdents: false, autoprefixer: false }),
     ]));
 
   css.pipe(postcss([
     criticalsplit({output: 'rest'}),
     //mqpacker({sort: true}),
-    cssnano({ reduceIdents: false }),
+    cssnano({ reduceIdents: false, autoprefixer: false }),
   ]));
 
   return es.merge(critical, css)
