@@ -2,6 +2,8 @@ body {
   hyphens: auto;
   font-family: $primary_font;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .region {
