@@ -2,7 +2,6 @@ name: Encore Main
 description: "For use of basic responsive website"
 type: theme
 package: custom
-base theme: classy
 core: 8.x
 
 libraries:
@@ -12,9 +11,8 @@ libraries:
 regions:
   header: Header
   primary_menu: 'Primary menu'
-  secondary_menu: 'Secondary Menu'
-  highlighted: Highlighted
+  message_center: 'Message Center'
   breadcrumb: Breadcrumb
-  content: Content
   sidebar: Sidebar
+  content: Content
   footer: Footer

@@ -1,0 +1,23 @@
+{%
+set classes = [
+'navigation',
+'menu--' ~ derivative_plugin_id|clean_class,
+]
+%}
+{% set heading_id = attributes.id ~ '-menu'|clean_id %}
+<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
+  <div class="left-nav-wrapper">
+    <a href="/" class="logo-wrapper"></a>
+  </div>
+  {# Menu. #}
+
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+    <div id="burger-icon" class="burger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+</nav>

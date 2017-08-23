@@ -1,49 +1,45 @@
 {% set title = node.title.value | raw %}
-<article class="page-container">
 
-  <header role="banner" class="region">
-    <div class="region-wrapper">
-      <h1>{{ title }}</h1>
+<div class="page">
+
+  <header class="region-wrapper">
+    <section class="region region-header">
       {{ page.header }}
-    </div>
+      <div class="title-wrapper">
+        <h1>{{ title }}</h1>
+      </div>
+    </section>
   </header>
 
-  {{ page.primary_menu }}
-
-  {{ page.secondary_menu }}
+  {% if page.primary_menu %}
+  <div class="region-wrapper primary-menu">
+    {{ page.primary_menu }}
+  </div>
+  {% endif %}
 
   {{ page.breadcrumb }}
-
-  {{ page.highlighted }}
-
-  {{ page.help }}
+  {{ page.message_center }}
 
   <main role="main">
-    <div class="main-content-wrapper">
-      <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-      <section class="layout-content">
-        {{ page.content }}
-      </section>{# /.layout-content #}
-
-      {% if page.sidebar %}
-        <aside class="sidebar" role="complementary">
-          {{ page.sidebar }}
-        </aside>
-      {% endif %}
-    </div>
+    <article class="main-content-wrapper region-wrapper">
+      <a id="main-content" tabindex="-1"></a>
+        <section class="region region-content">
+          {% if page.sidebar %}
+            <aside class="sidebar" role="complementary">
+              {{ page.sidebar }}
+            </aside>
+          {% endif %}
+          {{ page.content }}
+        </section>
+    </article>
   </main>
 
-
-  <footer role="contentinfo" class="region">
-    <div class="region-wrapper">
-      {{ page.footer }}
-      <div class="copy-write">
-        <p>&copy;{{ "now"|date("Y") }} {{ site_name }}. All rights reserved. Site by <a href="http://www.encoremultimedia.com/" target="_blank">Encore</a></p>
-      </div>
-    </div>
-
+  <footer class="region-wrapper">
+     <section class="region-footer">
+       {{ page.footer }}
+       <div class="copy-write">
+         <p>&copy;{{ "now"|date("Y") }} {{ site_name }}. All rights reserved. Site by <a href="http://www.encoremultimedia.com/" target="_blank">Encore Multimedia</a></p>
+       </div>
+     </section>
   </footer>
-
-
-</article>{# /.layout-container #}
+</div>

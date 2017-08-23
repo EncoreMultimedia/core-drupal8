@@ -1,5 +1,5 @@
 // Tabs.
-.region-content ul.tabs {
+.tabs ul {
   max-width: $max_width;
   width: 100%;
   margin: 0 auto 5px;
@@ -16,6 +16,8 @@
     background-color: $color_tab_background;
     color: $color_tab_color;
     display: block;
+    text-decoration: none;
+    padding: 3px 10px;
 
     &:hover {
       background-color: $color_tab_hover;

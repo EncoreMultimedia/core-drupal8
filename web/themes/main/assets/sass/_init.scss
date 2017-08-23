@@ -11,8 +11,8 @@ $base-font-size: 16px;
 // =============================================================================
 // Font stack here
 // =============================================================================
-$primary_font: '';
-$alternative_font: '';
+$primary_font: 'Muli', sans-serif;
+$secondary_font: 'Montserrat', sans-serif;
 
 // =============================================================================
 // Basic tab styling colors
@@ -31,6 +31,14 @@ $color_white:           #ffffff;
 $color_black:           #000000;
 $color_blue:            #1779ba;
 $color_encore_blue:     #0278ff;
+
+$color_light_blue:      #e6f5fb;
+$color_red:             #f92b2c;
+$color_light_red:       #ffdfdf;
+$color_border_gray:     #dcdcdc;
+$color_yellow:          #e3d23f;
+$color_light_yellow:    #fbfbe6;
+$color_green:           #6cb448;
 
 //font
 $color_font_black:      #313131;
