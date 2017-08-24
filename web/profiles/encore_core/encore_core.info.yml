@@ -1,0 +1,51 @@
+name: Encore Core
+type: profile
+description: Starting profile for Encore Sites
+core: 8.x
+
+dependencies:
+  - node
+  - history
+  - block
+  - block_content
+  - breakpoint
+  - config
+  - contextual
+  - contact
+  - quickedit
+  - help
+  - image
+  - options
+  - path
+  - taxonomy
+  - dblog
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - rdf
+  - views
+  - views_ui
+  - editor
+  - ckeditor
+  # Custom modules
+  - admin_toolbar
+  - admin_toolbar_tools
+  - address
+  - telephone
+  - ctools
+  - devel
+  - kint
+  - focal_point
+  - google_analytics
+  - menu_block
+  - menu_trail_by_path
+  - paragraphs
+  - pathauto
+  - token
+  - webform
+  - webform_ui
+
+themes:
+  - main
+  - seven
