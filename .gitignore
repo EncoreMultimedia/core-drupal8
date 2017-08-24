@@ -35,6 +35,11 @@
 # Ignore theme generation files
 /web/themes/main/node_modules
 /web/themes/main/public
+/yarn.lock
+/node_modules
+
+# Ignore Docker sync log files
+/.docker-sync
 
 # Ignore SimpleTest multi-site environment.
 /web/sites/simpletest
