@@ -1,7 +1,7 @@
 version: "2"
 
 syncs:
-  DrupalComposer:
+  centerline:
     src: './'
     sync_args: '-prefer newer'
     sync_strategy: 'native_osx'

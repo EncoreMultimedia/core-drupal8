@@ -1,0 +1,21 @@
+          ok  Starting native_osx for sync centerline
+          ok  centerline container still running, restarting unison in container
+     success  Sync container started
+     success  Showing unison logs from your sync container: centerline
+   Sync Log:  [END] Deleting web/themes/main/node_modules/gifsicle/vendor
+   Sync Log:  UNISON 2.48.4 finished propagating changes at 14:05:46.32 on 24 Aug 2017
+   Sync Log:  Synchronization complete at 14:05:46  (220 items transferred, 0 skipped, 0 failed)
+   Sync Log:  UNISON 2.48.4 started propagating changes at 14:07:32.79 on 24 Aug 2017
+   Sync Log:  [BGN] Updating file scripts/composer/ScriptHandler.php from /host_sync to /app_sync
+   Sync Log:  [END] Updating file scripts/composer/ScriptHandler.php
+   Sync Log:  [BGN] Deleting web/themes/main/node_modules from /app_sync
+   Sync Log:  [END] Deleting web/themes/main/node_modules
+   Sync Log:  UNISON 2.48.4 finished propagating changes at 14:07:32.94 on 24 Aug 2017
+   Sync Log:  Synchronization complete at 14:07:32  (2 items transferred, 0 skipped, 0 failed)
+   Sync Log:  UNISON 2.48.4 started propagating changes at 14:12:18.21 on 24 Aug 2017
+   Sync Log:  [BGN] Copying .docker-sync from /host_sync to /app_sync
+   Sync Log:  [END] Copying .docker-sync
+   Sync Log:  [BGN] Updating file scripts/composer/ScriptHandler.php from /host_sync to /app_sync
+   Sync Log:  Failed: The source file /host_sync/scripts/composer/ScriptHandler.php
+   Sync Log:  has been modified during synchronization.  Transfer aborted.
+   Sync Log:  [BGN] Copying web/themes/main/node_modules from /host_sync to /app_sync
