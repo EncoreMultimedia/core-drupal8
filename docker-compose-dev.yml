@@ -3,8 +3,8 @@ version: "2"
 services:
   php:
     volumes:
-      - centerline:/var/www/html:nocopy # Replace volume to this to use docker-sync for macOS users
+      - DrupalComposer:/var/www/html:nocopy # Replace volume to this to use docker-sync for macOS users
 
 volumes:
-  centerline:
+  DrupalComposer:
     external: true
