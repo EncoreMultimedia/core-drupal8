@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ad882482278225720088ba0accae73b",
+    "content-hash": "408e7c0b185dddad1b1fbcdd42fe49ae",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1200,7 +1200,7 @@
         },
         {
             "name": "drupal-composer/drupal-scaffold",
-            "version": "2.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-scaffold.git",
@@ -1237,7 +1237,7 @@
                 "GPL-2.0+"
             ],
             "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
-            "time": "2017-05-05T21:26:28+00:00"
+            "time": "2017-05-05 21:26:28"
         },
         {
             "name": "drupal/address",
@@ -7238,6 +7238,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal-composer/drupal-scaffold": 20,
         "drupal/focal_point": 10,
         "drupal/picture_background_formatter": 20
     },
