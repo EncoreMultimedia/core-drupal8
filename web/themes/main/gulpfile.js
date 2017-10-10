@@ -6,7 +6,6 @@ const watchify      = require('watchify');
 const exorcist      = require('exorcist');
 const browserify    = require('browserify');
 const browserSync   = require('browser-sync').create();
-const babili        = require('gulp-babili');
 const uglify        = require("gulp-uglify");
 const runSequence   = require('run-sequence');
 const clean         = require('gulp-clean');
@@ -103,15 +102,8 @@ gulp.task('bundle', function () {
 });
 
 gulp.task('uglify', function() {
-  gulp.src('public/js/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/js'))
-});
-
-
-gulp.task('uglify', function() {
   gulp.src('./public/build/js/*.js')
-    .pipe(uglify('scripts.min.js', {      output: {
+    .pipe(uglify('scripts.min.js', {output: {
       beautify: true
     }}))
     .pipe(gulp.dest('public/js/'))

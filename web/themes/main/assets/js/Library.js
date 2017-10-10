@@ -52,37 +52,83 @@ export const eMobileMenu = (settings) => {
 };
 
 export const eMenu = (element) => {
-  const LINKS = element.querySelectorAll('li');
-  for (let i = 0; i < LINKS.length; i++) {
-    if(LINKS[i].classList.contains('menu-item--expanded')) {
-      LINKS[i].addEventListener('click', (e) => {
-        if(LINKS[i].classList.contains('hover') && !e.target.parentElement.classList.contains('menu-item--expanded')) {
-          LINKS[i].classList.remove('hover');
-          element.classList.remove('hover-open');
-        } else if(e.target.parentElement.classList.contains('hover')) {
-          e.preventDefault();
-          LINKS[i].classList.remove('hover');
-          element.classList.remove('hover-open');
-        } else {
-          e.preventDefault();
-          e.stopPropagation();
-          LINKS[i].classList.add('hover');
-          element.classList.add('hover-open')
-        }
-      });
-    }
-  }
+  const LINKS = element.querySelectorAll('.menu-item--expanded > a');
 
-  window.addEventListener('click', () => {
-    if(element.classList.contains('hover-open')) {
+  const closeMenu = (item) => {
+    item.classList.remove('hover');
+
+    // Hide children
+    const children = item.querySelectorAll('li.hover');
+
+    for (let k = 0; k < children.length; k++) {
+      children[k].classList.remove('hover');
+    }
+
+    // Add/remove whole menu class
+    if(element.querySelectorAll('.menu-item--expanded.hover').length > 0) {
+      element.classList.add('hover-open');
+    } else {
       element.classList.remove('hover-open');
-      for (let i = 0; i < LINKS.length; i++ ) {
-        if(LINKS[i].classList.contains('menu-item--expanded')) {
-          LINKS[i].classList.remove('hover');
-        }
+    }
+  };
+
+  const openMenu = (item, parentUL) => {
+    // Hide other open menus
+    for (let j = 0; j < parentUL.children.length; j++) {
+      if(parentUL.children[j] != item) {
+        closeMenu(parentUL.children[j]);
       }
     }
-  });
+
+    // Trigger hover class
+    if(item.classList.contains('hover')) {
+      closeMenu(item);
+    } else {
+      item.classList.add('hover');
+    }
+  };
+
+  // // Exit when blurring menu
+  // element.addEventListener('pointerleave', (e) => {
+  //   console.log("BLUURRRR");
+  //   if(element.classList.contains('hover-open')) {
+  //     element.classList.remove('hover-open');
+  //     for (let i = 0; i < LINKS.length; i++ ) {
+  //       LINKS[i].parentElement.classList.remove('hover');
+  //     }
+  //   }
+  // });
+
+  for (let i = 0; i < LINKS.length; i++) {
+    const link = LINKS[i];
+    const item = link.parentElement;
+    const parentUL = item.parentElement;
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      openMenu(item, parentUL);
+    });
+  }
+
+  const TOP_ITEMS = [...element.children].filter((item) => {return item.classList.contains('menu-item--expanded');});
+  for (let i = 0; i < TOP_ITEMS.length; i++) {
+    const item = TOP_ITEMS[i];
+    const parentUL = item.parentElement;
+
+    item.addEventListener('pointerenter', (e) => {
+      if(e.pointerType != 'mouse' || screenCategory() != 'desktop') return;
+      e.preventDefault();
+
+      openMenu(item, parentUL);
+    });
+
+    item.addEventListener('pointerleave', (e) => {
+      if(e.pointerType != 'mouse' || screenCategory() != 'desktop') return;
+
+      closeMenu(item);
+    });
+  }
 };
 
 /**
