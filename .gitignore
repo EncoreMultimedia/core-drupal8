@@ -20,7 +20,6 @@
 /web/update.php
 /web/web.config
 /web/sites/example.settings.local.php
-/web/sites/development.services.yml
 /web/sites/default/default.services.yml
 /web/sites/default/default.settings.php
 
