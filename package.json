@@ -1,0 +1,8 @@
+{
+  "name": "base-encore",
+  "scripts": {
+    "install": "cd web/themes/main && yarn",
+    "start": "cd web/themes/main && yarn start",
+    "build": "cd web/themes/main && yarn build"
+  }
+}

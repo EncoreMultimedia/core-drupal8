@@ -58,6 +58,10 @@ class ScriptHandler {
       umask($oldmask);
       $event->getIO()->write("Create a sites/default/files directory with chmod 0777");
     }
+
+    $event->getIO()->write("installing node modules");
+    exec('yarn install');
+
   }
 
   /**
