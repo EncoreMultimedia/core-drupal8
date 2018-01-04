@@ -1,8 +1,0 @@
-version: "2"
-
-syncs:
-  DrupalComposer:
-    src: './'
-    sync_args: '-prefer newer'
-    sync_strategy: 'native_osx'
-    sync_excludes: ['.gitignore', '.git', '.idea','.DS_Store', 'docker-compose-dev.yml', 'docker-compose.override.yml', 'docker-compose.yml', 'docker-sync.yml']

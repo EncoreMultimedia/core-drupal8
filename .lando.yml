@@ -1,0 +1,25 @@
+# Drupal 8 recipe
+name: core8
+
+# Start with the default Drupal 8 recipe
+recipe: drupal8
+
+# Configure the Drupal8 recipe
+config:
+  php: '5.6'
+  via: nginx
+  webroot: web
+  drush: composer
+  xdebug: true
+
+proxy:
+  mailhog:
+    - mail.robroy.lndo.site
+
+# Mailhog things
+services:
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+    portforward: true
