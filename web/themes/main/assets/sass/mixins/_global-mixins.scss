@@ -2,22 +2,20 @@
 // Utility Mixins
 // =============================================================================
 
-// Clearfix
-@mixin clearfix() {
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+// just to make sure this file works if used on its own
+$base-font-size: 16px !default;
+
+@function em($px, $context: $base-font-size) {
+  @return ratio($px, $context) * 1em;
 }
 
-// if $context is true, switch to rem
-@function em($px, $context-or-rem: $base-font-size) {
-  @if ($context-or-rem == true) {
-    @return $px / strip_unit($base-font-size) * 1rem;
-  } @else {
-    @return $px / strip_unit($context-or-rem) * 1em;
-  }
+@function rem($px) {
+  @return ratio($px, $base-font-size) * 1rem;
+}
+
+// Use with things like line-height
+@function ratio($px, $context: $base-font-size) {
+  @return strip_unit($px) / strip_unit($context);
 }
 
 /// Remove the unit of a length
@@ -29,4 +27,84 @@
   }
 
   @return $number;
+}
+
+@mixin bg-gradient($top, $btm, $fallback, $dir: to bottom) {
+  background: $fallback;
+  @content;
+  background: linear-gradient($dir, $top 0%, $btm 100%);
+}
+
+@mixin clearfix() {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+// Everything below is taken from Bourbon (and slightly tweaked).
+
+// This hides elements to everyone except screen-readers.
+@mixin hide-visually() {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@mixin unhide-visually() {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+@mixin triangle($direction, $width, $height, $color) {
+  @if not index(
+    "up" "up-right" "right" "down-right" "down" "down-left" "left" "up-left",
+    $direction
+  ) {
+    @error "Direction must be `up`, `up-right`, `right`, `down-right`, " +
+           "`down`, `down-left`, `left` or `up-left`.";
+  } @else {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    @if $direction == "up" {
+      border-color: transparent transparent $color;
+      border-width: 0 ($width / 2) $height;
+    } @else if $direction == "up-right" {
+      border-color: transparent $color transparent transparent;
+      border-width: 0 $width $width 0;
+    } @else if $direction == "right" {
+      border-color: transparent transparent transparent $color;
+      border-width: ($height / 2) 0 ($height / 2) $width;
+    } @else if $direction == "down-right" {
+      border-color: transparent transparent $color;
+      border-width: 0 0 $width $width;
+    } @else if $direction == "down" {
+      border-color: $color transparent transparent;
+      border-width: $height ($width / 2) 0;
+    } @else if $direction == "down-left" {
+      border-color: transparent transparent transparent $color;
+      border-width: $width 0 0 $width;
+    } @else if $direction == "left" {
+      border-color: transparent $color transparent transparent;
+      border-width: ($height / 2) $width ($height / 2) 0;
+    } @else if $direction == "up-left" {
+      border-color: $color transparent transparent;
+      border-width: $width $width 0 0;
+    }
+  }
 }

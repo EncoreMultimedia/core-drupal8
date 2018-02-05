@@ -1,5 +1,16 @@
-@import "init";
+// generic vars
+@import "vars/font-stacks";
+
+// libs
+@import "breakpoint";
+
+// mixins
 @import "mixins/animations-mixin";
+
+// project-specific vars
+@import "init"; // imports "mixins/global-mixins"
+
+// styles
 @import "global/global";
 @import "global/typography";
 @import "global/header";

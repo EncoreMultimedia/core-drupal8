@@ -11,16 +11,8 @@ $base-font-size: 16px;
 // =============================================================================
 // Font stack here
 // =============================================================================
-$primary_font: 'Muli', sans-serif;
-$secondary_font: 'Montserrat', sans-serif;
-
-// =============================================================================
-// Basic tab styling colors
-// =============================================================================
-$color_tab_border_bottom: #1779ba;
-$color_tab_background:    #1779ba;
-$color_tab_hover:         rgba(#1779ba, .9);
-$color_tab_color:         #FFFFFF;
+$primary_font: $muli;
+$secondary_font: $montserrat;
 
 // =============================================================================
 // Color Palette
@@ -44,6 +36,14 @@ $color_green:           #6cb448;
 $color_font_black:      #313131;
 
 // =============================================================================
+// Basic tab styling colors
+// =============================================================================
+$color_tab_border_bottom: $color_blue;
+$color_tab_background:    $color_blue;
+$color_tab_hover:         rgba($color_blue, .9);
+$color_tab_color:         $color_white;
+
+// =============================================================================
 // Gradients
 // =============================================================================
 
@@ -55,30 +55,28 @@ $color_font_black:      #313131;
 // padding
 
 //mobile
-$padding_mobile_top:        em(15, true);
-$padding_mobile_side:       em(15, true);
-$padding_mobile_bottom:     em(15, true);
+$padding_mobile_top:        rem(15);
+$padding_mobile_side:       rem(15);
+$padding_mobile_bottom:     rem(15);
 $padding_mobile:            $padding_mobile_top $padding_mobile_side $padding_mobile_bottom;
 
 //tablet
-$padding_tablet_top:        em(30, true);
-$padding_tablet_side:       em(30, true);
-$padding_tablet_bottom:     em(30, true);
+$padding_tablet_top:        rem(30);
+$padding_tablet_side:       rem(30);
+$padding_tablet_bottom:     rem(30);
 $padding_tablet:            $padding_tablet_top $padding_tablet_side $padding_tablet_bottom;
 
 //desktop
-$padding_desktop_top:       em(60, true);
-$padding_desktop_side:      em(60, true);
-$padding_desktop_bottom:    em(60, true);
+$padding_desktop_top:       rem(60);
+$padding_desktop_side:      rem(60);
+$padding_desktop_bottom:    rem(60);
 $padding_desktop:           $padding_desktop_top $padding_desktop_side $padding_desktop_bottom;
 
 // Max width of containers
-$max_width: em(1300, true);
+$max_width: rem(1300);
 // =============================================================================
 // Media Queries
 // =============================================================================
-
-@import "breakpoint";
 
 //Breakpoint Width
 $bpw_mouse_droid:     em(300);
