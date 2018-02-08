@@ -2,8 +2,8 @@
 // Utility Mixins
 // =============================================================================
 
-// just to make sure this file works if used on its own
-$base-font-size: 16px !default;
+// to make this file work if used on its own, uncomment the following line
+// $base-font-size: 16px !default;
 
 @function em($px, $context: $base-font-size) {
   @return ratio($px, $context) * 1em;
