@@ -5,6 +5,27 @@
 // to make this file work if used on its own, uncomment the following line
 // $base-font-size: 16px !default;
 
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+// Removes units only from zero-values (like 0px)
+@function strip-zero($number) {
+  @return if(strip-unit($number) == 0, 0, $number);
+}
+
+// Use with things like line-height
+@function ratio($px, $context: $base-font-size) {
+  @return strip-unit($px) / strip-unit($context);
+}
+
 @function em($px, $context: $base-font-size) {
   @return ratio($px, $context) * 1em;
 }
@@ -13,20 +34,18 @@
   @return ratio($px, $base-font-size) * 1rem;
 }
 
-// Use with things like line-height
-@function ratio($px, $context: $base-font-size) {
-  @return strip_unit($px) / strip_unit($context);
+@function px($em, $context: $base-font-size) {
+  @return strip-unit($em) * $context;
 }
 
-/// Remove the unit of a length
-/// @param {Number} $number - Number to remove unit from
-/// @return {Number} - Unitless number
-@function strip_unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
-
-  @return $number;
+// ALL params must be in px
+@function fluid-size($sm, $lg, $narrow, $wide) {
+  @return calc(
+    (100vw - #{$narrow})
+    / #{strip-unit($wide - $narrow)}
+    * #{strip-unit($lg - $sm)}
+    + #{$sm}
+  );
 }
 
 @mixin bg-gradient($top, $btm, $fallback, $dir: to bottom) {
@@ -43,8 +62,7 @@
   }
 }
 
-// Everything below is taken from Bourbon (and slightly tweaked).
-
+// These are taken from Bourbon (and slightly tweaked).
 // This hides elements to everyone except screen-readers.
 @mixin hide-visually() {
   border: 0;
@@ -107,4 +125,91 @@
       border-width: $width $width 0 0;
     }
   }
+}
+// End Bourbon
+
+// Box shadow package
+$PI: 3.141592653589793;
+
+@function deg-to-rad($deg, $unit: true) {
+  @return strip-unit($deg) * $PI / 180 * if($unit, 1rad, 1);
+}
+
+@function unitless-rad($angle) {
+  @if unitless($angle) {
+    @return $angle;
+  }
+  @else if unit($angle) == rad {
+    @return $angle / 1rad;
+  }
+  @else if unit($angle) == deg {
+    @return deg-to-rad($angle, false);
+  }
+  @else if type-of($angle) != number or not unitless($angle) {
+    @warn "#{ $angle } is not a valid number.";
+    @return $angle;
+  }
+}
+
+// Returns the cosine of a number.
+// @param {Number} $x A number in rad or deg. Assuming unitless number to be in rad.
+// @example
+//     cos(0.7854) // 0.70711
+//     cos(45deg)  // 0.70711
+@function cos($x) {
+  $x: unitless-rad($x) % ($PI * 2);
+  $ret: 1;
+  $i: 1;
+  @for $n from 1 to 24 {
+    $i: $i * -1 * $x * $x / (2 * $n) / (2 * $n - 1);
+    $ret: $ret + $i;
+  }
+  @return $ret;
+}
+
+
+// Returns the sine of a number.
+// @param {Number} $x A number in rad or deg. Assuming unitless number to be in rad.
+// @example
+//     sin(1.0472) // 0.86603
+//     sin(60deg)  // 0.86603
+@function sin($x) {
+  $x: unitless-rad($x);
+  @return cos($x - $PI / 2);
+}
+
+@function percent-to-dec($number) {
+  @return if(unit($number) == '%', strip-unit($number) / 100, $number);
+}
+
+@mixin ps-box-shadow($color: #000000, $opacity: 1, $angle: 0, $dist: 0, $spread: 0, $size: 0, $inset: false) {
+  $inset: if($inset, 'inset ', '');
+  $opacity: percent-to-dec($opacity);
+  $color: if($opacity==1, $color, rgba($color, $opacity));
+  $spread: $size * $spread/100;
+  $blur: ($size - $spread);
+
+  $angle: (180 - strip-unit($angle)) * $PI / 180; // convert to radians
+  $dist-x: strip-zero(round(cos($angle) * $dist));
+  $dist-y: strip-zero(round(sin($angle) * $dist));
+
+  $output: $dist-x $dist-y;
+  @if ($spread != 0) {
+    $output: $output $blur $spread;
+  }
+  @else if($size != 0) {
+    $output: $output $blur;
+  }
+
+  box-shadow: #{$inset}#{$output} $color;
+}
+
+// changes parameter order to allow setting the most common values without naming params
+@mixin ps-box-shadow-quick($opacity: 1, $angle: 0, $dist: 0, $size: 0, $color: #000000, $spread: 0, $inset: false) {
+  @include ps-box-shadow($color, $opacity, $angle, $dist, $spread, $size, $inset);
+}
+
+// changes parameter order to approximate the CSS spec
+@mixin ps-box-shadow-css($inset: false, $angle: 0, $dist: 0, $blur: 0, $spread: 0, $color: #000000, $opacity: 1) {
+  @include ps-box-shadow($color, $opacity, $angle, $dist, $spread, $size, $inset);
 }
