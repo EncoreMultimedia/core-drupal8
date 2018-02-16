@@ -170,7 +170,7 @@ gulp.task('imagemin', () => {
  */
 gulp.task('default', () => {
   browserSync.init({
-    proxy: 'localhost:9080',
+    proxy: 'core8.lndo.site',
     injectChanges: true,
     //reloadDelay: 2000,
     serveStatic: [{

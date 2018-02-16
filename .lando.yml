@@ -14,7 +14,7 @@ config:
 
 proxy:
   mailhog:
-    - mail.robroy.lndo.site
+    - mail.core8.lndo.site
 
 # Mailhog things
 services:
