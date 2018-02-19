@@ -1,11 +1,5 @@
-// libs
-@import "breakpoint";
-
-// mixins
 @import "mixins/animations-mixin";
-
-// project-specific vars
-@import "init"; // imports "mixins/global-mixins"
+@import "init"; // imports other mixins
 
 // styles
 @import "global/global";

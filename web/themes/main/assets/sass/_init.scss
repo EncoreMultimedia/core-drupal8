@@ -75,9 +75,11 @@ $padding_desktop:           $padding_desktop_top $padding_desktop_side $padding_
 
 // Max width of containers
 $max_width: rem(1300);
+
 // =============================================================================
 // Media Queries
 // =============================================================================
+@import "breakpoint";
 
 //Breakpoint Width
 $bpw_mouse_droid:     em(300);
