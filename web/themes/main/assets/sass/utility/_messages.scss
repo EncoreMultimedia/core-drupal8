@@ -22,8 +22,8 @@
   &:before {
     content: "";
     display: block;
-    width: em(32, true);
-    height: em(32, true);
+    width: rem(32);
+    height: rem(32);
     margin: 0 auto em(20, 28);
     position: absolute;
     left: 20px;

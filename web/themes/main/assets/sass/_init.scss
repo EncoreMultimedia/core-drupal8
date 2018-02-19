@@ -1,7 +1,8 @@
 // =============================================================================
-// Importing this here fixes issues, it's magical just go with it.
+// Importing these here fixes issues, it's magical just go with it.
 // =============================================================================
 @import "mixins/global-mixins";
+@import "vars/font-stacks";
 
 // =============================================================================
 // Font Sizes Here: Be smart keep base font size at 16px unless you want to make your job hard.
@@ -116,5 +117,3 @@ $bph_atat:            em(540);
 $bph_deathstar:       em(825);
 $bph_nexu:            em(855);
 $bph_Dianoga:         em(1200);
-
-
