@@ -186,14 +186,14 @@ $PI: 3.141592653589793;
 }
 
 // parameter order here is the same as the properties in photoshop
-@mixin ps-box-shadow($color: #000000, $opacity: 1, $angle: 0, $dist: 0, $spread: 0, $size: 0, $inset: false) {
+@mixin ps-box-shadow($color: #000000, $opacity: 0.5, $angle: 0, $dist: 0, $spread: 0, $size: 0, $inset: false) {
   $inset: if($inset, 'inset ', '');
   $opacity: percent-to-dec($opacity);
   $color: if($opacity==1, $color, rgba($color, $opacity));
-  $spread: $size * $spread/100;
-  $blur: ($size - $spread);
+  $spread: $size * percent-to-dec($spread);
+  $blur: $size - $spread;
 
-  $angle: (180 - strip-unit($angle)) * $PI / 180; // convert to radians
+  $angle: 180 - strip-unit($angle) * 1deg;
   $dist-x: strip-zero(round(cos($angle) * $dist));
   $dist-y: strip-zero(round(sin($angle) * $dist));
 
@@ -209,15 +209,9 @@ $PI: 3.141592653589793;
 }
 
 // changes parameter order to allow setting the most common values without naming params
-@mixin ps-box-shadow-quick($opacity: 1, $angle: 0, $dist: 0, $size: 0, $color: #000000, $spread: 0, $inset: false) {
+@mixin ps-box-shadow-quick($opacity: 0.5, $angle: 0, $dist: 0, $size: 0, $color: #000000, $spread: 0, $inset: false) {
   @include ps-box-shadow($color, $opacity, $angle, $dist, $spread, $size, $inset);
 }
-
-// changes parameter order to approximate the CSS spec
-@mixin ps-box-shadow-css($inset: false, $angle: 0, $dist: 0, $blur: 0, $spread: 0, $color: #000000, $opacity: 1) {
-  @include ps-box-shadow($color, $opacity, $angle, $dist, $spread, $size, $inset);
-}
-
 // End box shadow package
 
 // Begin intrinsic ratio size package
