@@ -10,7 +10,7 @@
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+    @return ($number / ($number * 0 + 1));
   }
   @return $number;
 }
@@ -22,7 +22,7 @@
 
 // Use with things like line-height
 @function ratio($px, $context: $base-font-size) {
-  @return strip-unit($px) / strip-unit($context);
+  @return (strip-unit($px) / strip-unit($context));
 }
 
 @function em($px, $context: $base-font-size) {
@@ -38,7 +38,7 @@
 }
 
 @function px($em, $context: $base-font-size) {
-  @return strip-unit($em) * $context;
+  @return (strip-unit($em) * $context);
 }
 
 // ALL params must be in px
@@ -135,7 +135,7 @@
 $PI: 3.141592653589793;
 
 @function deg-to-rad($deg, $unit: true) {
-  @return strip-unit($deg) * $PI / 180 * if($unit, 1rad, 1);
+  @return (strip-unit($deg) * $PI / 180 * if($unit, 1rad, 1));
 }
 
 @function unitless-rad($angle) {
@@ -143,7 +143,7 @@ $PI: 3.141592653589793;
     @return $angle;
   }
   @else if unit($angle) == rad {
-    @return $angle / 1rad;
+    @return ($angle / 1rad);
   }
   @else if unit($angle) == deg {
     @return deg-to-rad($angle, false);
@@ -198,10 +198,11 @@ $PI: 3.141592653589793;
   $dist-y: strip-zero(round(sin($angle) * $dist));
 
   $output: $dist-x $dist-y;
-  @if ($spread != 0) {
+  
+  @if $spread != 0 {
     $output: $output $blur $spread;
   }
-  @else if($size != 0) {
+  @else if $size != 0 {
     $output: $output $blur;
   }
 
