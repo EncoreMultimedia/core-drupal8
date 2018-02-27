@@ -27,6 +27,7 @@ const AUTOPREFIXER_BROWSERS = {
     'safari >= 7',
     'ios >= 7',
     'android >= 4',
+    'Firefox ESR',
   ],
 };
 
