@@ -1,9 +1,8 @@
-@charset 'utf-8';
 // =============================================================================
 // Importing these here fixes issues, it's magical just go with it.
 // =============================================================================
-@import "mixins/global-mixins";
-@import "vars/font-stacks";
+@import "mixins";
+@import "font-stacks";
 
 // =============================================================================
 // Font Sizes Here: Be smart keep base font size at 16px unless you want to make your job hard.
@@ -80,7 +79,7 @@ $max_width: rem(1300);
 // =============================================================================
 // Media Queries
 // =============================================================================
-@import "breakpoint";
+@import "../vendor/breakpoint";
 
 //Breakpoint Width
 $bpw_mouse_droid:     em(300);
