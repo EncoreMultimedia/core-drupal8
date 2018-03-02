@@ -33,7 +33,10 @@ const AUTOPREFIXER_BROWSERS = {
 
 const ASSETS = {
   images: './assets/images/**/*',
-  sass: './assets/sass/**/*.scss',
+  sass: [
+    './assets/sass/*.scss',
+    './assets/sass/nodes/*.scss'
+  ],
   scripts: './assets/js/**/*.js',
 };
 
