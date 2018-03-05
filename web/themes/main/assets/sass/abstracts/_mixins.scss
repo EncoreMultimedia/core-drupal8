@@ -41,8 +41,37 @@
   @return (strip-unit($em) * $context);
 }
 
-// ALL params must be in px
 @function fluid-size($sm, $lg, $narrow, $wide) {
+  @if unitless($sm) {
+    @error '$sm (first parameter) is missing units.';
+  }
+
+  @if not (unitless($lg) or unit($sm) == unit($lg)) {
+    @error 'Element size units (first two parameters) do not match.';
+  }
+
+  @if unitless($narrow) {
+    @error '$narrow (third parameter) is missing units.';
+  }
+
+  @if not (unitless($wide) or unit($narrow) == unit($wide)) {
+    @error 'Viewport width units (last two parameters) do not match.';
+  }
+
+  @if (unit($narrow) == 'rem'
+      and not (unit($sm) == 'em' or unit($sm) == 'rem')
+    ) or (
+      unit($narrow) == 'px' and not (unit($sm) == 'px')
+    )
+  {
+    @error 'All units must be similar; either all px or all em/rem.'
+  }
+
+  @if unit($narrow) == 'em' {
+    $narrow: strip-unit($narrow) * 1rem;
+    $wide: strip-unit($wide) * 1rem;
+  }
+
   @return calc(
     (100vw - #{$narrow})
     / #{strip-unit($wide - $narrow)}
@@ -198,7 +227,7 @@ $PI: 3.141592653589793;
   $dist-y: strip-zero(round(sin($angle) * $dist));
 
   $output: $dist-x $dist-y;
-  
+
   @if $spread != 0 {
     $output: $output $blur $spread;
   }
