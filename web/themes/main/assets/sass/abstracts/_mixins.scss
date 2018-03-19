@@ -43,7 +43,7 @@
 
 @function fluid-size($sm, $lg, $narrow, $wide) {
   @if unitless($sm) {
-    @error '$sm (first parameter) is missing units.';
+    $sm: $sm * 1px;
   }
 
   @if not (unitless($lg) or unit($sm) == unit($lg)) {
@@ -51,25 +51,26 @@
   }
 
   @if unitless($narrow) {
-    @error '$narrow (third parameter) is missing units.';
+    @error '$narrow (third parameter) requires units to be specified.';
   }
 
   @if not (unitless($wide) or unit($narrow) == unit($wide)) {
     @error 'Viewport width units (last two parameters) do not match.';
   }
 
-  @if (unit($narrow) == 'rem'
-      and not (unit($sm) == 'em' or unit($sm) == 'rem')
-    ) or (
-      unit($narrow) == 'px' and not (unit($sm) == 'px')
-    )
-  {
-    @error 'All units must be similar; either all px or all em/rem.'
-  }
-
   @if unit($narrow) == 'em' {
     $narrow: strip-unit($narrow) * 1rem;
     $wide: strip-unit($wide) * 1rem;
+  }
+
+  @if unit($narrow) == 'rem' and unit($sm) == 'px' {
+    $sm: rem($sm);
+    $lg: rem($lg);
+  }
+
+  @if unit($narrow) == 'px' and not (unit($sm) == 'px') {
+    $narrow: rem($narrow);
+    $wide: rem($wide);
   }
 
   @return calc(
