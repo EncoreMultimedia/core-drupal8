@@ -8,7 +8,7 @@ const browserify    = require('browserify');
 const browserSync   = require('browser-sync').create();
 const uglify        = require("gulp-uglify");
 const runSequence   = require('run-sequence');
-const clean         = require('gulp-clean');
+const del           = require('del');
 const sass          = require('gulp-sass');
 const postcss       = require('gulp-postcss');
 const sourcemaps    = require('gulp-sourcemaps');
@@ -94,14 +94,12 @@ function bundle() {
  */
 
 gulp.task('clean:public', () =>
-  gulp.src(PUBLIC.all, {read: false})
-    .pipe(clean())
+  del(PUBLIC.all)
 );
 
-gulp.task('clean:build', () => {
-  gulp.src('public/build', {read: false})
-    .pipe(clean())
-});
+gulp.task('clean:build', () =>
+  del('public/build')
+);
 
 gulp.task('bundle', function () {
   return bundle();

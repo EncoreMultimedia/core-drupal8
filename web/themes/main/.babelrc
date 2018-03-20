@@ -1,9 +1,4 @@
 {
-  "presets": [
-    [
-      "env",
-      "es2015"
-    ]
-  ],
+  "presets": ["env"],
   "sourceMap": false
 }
