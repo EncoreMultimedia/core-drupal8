@@ -33,7 +33,9 @@ const AUTOPREFIXER_BROWSERS = {
 
 const ASSETS = {
   images: './assets/images/**/*',
-  sass: [
+  sass_base: './assets/sass',
+  sass_all: './assets/sass/**/*.scss',
+  sass_mains: [
     './assets/sass/*.scss',
     './assets/sass/nodes/*.scss'
   ],
@@ -110,12 +112,12 @@ gulp.task('uglify', function() {
     .pipe(uglify('scripts.min.js', {output: {
       beautify: true
     }}))
-    .pipe(gulp.dest('public/js/'))
+    .pipe(gulp.dest(PUBLIC.js))
     .pipe(browserSync.stream({once: true}));
 });
 
 gulp.task('sass:watch', () =>
-  gulp.src(ASSETS.sass)
+  gulp.src(ASSETS.sass_mains, { base: ASSETS.sass_base })
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
@@ -129,7 +131,7 @@ gulp.task('sass:watch', () =>
 );
 
 gulp.task('sass:build', () => {
-  let css = gulp.src(ASSETS.sass)
+  let css = gulp.src(ASSETS.sass_mains, { base: ASSETS.sass_base })
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([ autoprefixer(AUTOPREFIXER_BROWSERS) ]));
 
@@ -152,7 +154,7 @@ gulp.task('sass:build', () => {
 });
 
 gulp.task('imagemin', () => {
-    return gulp.src('assets/images/**/*')
+    return gulp.src(ASSETS.images)
       .pipe(imagemin([
         imagemin.gifsicle({interlaced: true}),
         imagemin.jpegtran({progressive: true}),
@@ -183,8 +185,8 @@ gulp.task('default', () => {
     }],
   });
 
-  gulp.watch(ASSETS.sass,['sass:watch']);
-  gulp.watch('assets/images/**/*',['imagemin']);
+  gulp.watch(ASSETS.sass_all,['sass:watch']);
+  gulp.watch(ASSETS.images,['imagemin']);
   gulp.watch(ASSETS.scripts,() => runSequence('bundle','uglify', 'clean:build'));
 });
 
