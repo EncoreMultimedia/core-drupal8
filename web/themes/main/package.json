@@ -27,8 +27,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "postcss-critical-split": "^2.5.1",
-    "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.9.0"
+    "vinyl-source-stream": "^2.0.0"
   },
   "scripts": {
     "lint:js": "eslint app/ webpack.*.js --cache",
