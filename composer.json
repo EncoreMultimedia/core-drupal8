@@ -1,5 +1,5 @@
 {
-    "name": "drupal-composer/drupal-project",
+    "name": "EncoreMultimedia/core-drupal8",
     "description": "Project template for Drupal 8 projects with composer",
     "type": "project",
     "license": "GPL-2.0+",
@@ -70,6 +70,9 @@
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
             "@drupal-scaffold"
+        ],
+        "test": [
+          "./vendor/bin/phpunit || true"
         ]
     },
     "extra": {
