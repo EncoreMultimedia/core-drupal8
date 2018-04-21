@@ -12,14 +12,18 @@ config:
   drush: composer
   xdebug: true
 
-proxy:
-  mailhog:
-    - mail.core8.lndo.site
-
-# Mailhog things
 services:
+  appserver:
+    run:
+      - "cd $LANDO_MOUNT && composer install"
+      
+# Mailhog things
   mailhog:
     type: mailhog
     hogfrom:
       - appserver
     portforward: true
+
+proxy:
+  mailhog:
+    - mail.core8.lndo.site
