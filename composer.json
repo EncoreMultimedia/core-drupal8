@@ -25,6 +25,7 @@
         "drupal/core": "~8.4",
         "drupal/ctools": "^3.0",
         "drupal/devel": "^1.0",
+        "drupal/drd_agent": "^3.7",
         "drupal/focal_point": "^1.0@beta",
         "drupal/google_analytics": "^2.1",
         "drupal/menu_block": "^1.4",

@@ -16,7 +16,10 @@ services:
   appserver:
     run:
       - "cd $LANDO_MOUNT && composer install"
-      
+
+  database:
+    type: mariadb
+
 # Mailhog things
   mailhog:
     type: mailhog
