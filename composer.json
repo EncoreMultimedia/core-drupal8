@@ -5,8 +5,13 @@
     "license": "GPL-2.0+",
     "authors": [
         {
-            "name": "",
-            "role": ""
+            "name": "Johnny Martin"
+        },
+        {
+            "name": "Garrett Whitehorn"
+        },
+        {
+            "name": "Taylor Cammack"
         }
     ],
     "repositories": [
