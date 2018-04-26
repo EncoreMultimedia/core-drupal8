@@ -6,7 +6,7 @@ recipe: drupal8
 
 # Configure the Drupal8 recipe
 config:
-  php: '5.6'
+  php: '7.1'
   via: nginx
   webroot: web
   drush: composer
