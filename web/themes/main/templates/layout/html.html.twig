@@ -29,6 +29,8 @@ logged_in ? 'user-logged-in',
 not root_path ? 'frontpage' : root_path|clean_class,
 node_type ? 'node-' ~ node_type|clean_class,
 head_title['title'].__toString() | lower | replace(' ', '-') | trim('.') | trim('!') | trim('.') | trim('?'),
+path_info.args ? 'path-' ~ path_info.args,
+current_path ? 'context' ~ current_path|clean_class,
 db_offline ? 'db-offline',
 ]
 %}
