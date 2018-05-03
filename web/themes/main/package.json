@@ -1,37 +1,33 @@
 {
   "name": "core-drupal8",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "repository": "https://github.com/EncoreMultimedia/core-drupal8.git",
   "author": "TheLostCookie <TheLostCookie@3454003.no-reply.drupal.org>",
   "license": "MIT",
   "dependencies": {
-    "babel-preset-env": "^1.4.0",
-    "babelify": "^7.3.0",
-    "browser-sync": "^2.18.12",
+    "autoprefixer": "^7.0.0",
+    "babel-preset-env": "^1.5.0",
+    "babel-core": "^6.0.14",
+    "babelify": "^8.0.0",
+    "browser-sync": "^2.23.0",
+    "browserify": "^16.0.0",
     "css-mqpacker": "^6.0.1",
     "cssnano": "^3.10.0",
     "del": "^3.0.0",
-    "eslint": "^3.19.0",
+    "eslint": "^4.0.0",
     "event-stream": "^3.3.4",
-    "exorcist": "^0.4.0",
-    "fixed-sticky": "^0.1.7",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-babel-minify": "^0.1.2",
-    "gulp-browserify": "^0.5.1",
-    "gulp-clone": "^1.0.0",
+    "exorcist": "^1.0.0",
+    "gulp": "^4.0.0",
+    "gulp-clone": "^2.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^3.2.0",
-    "gulp-postcss": "^7.0.0",
-    "gulp-sass": "^3.1.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sass": "^4.0.0",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "postcss-critical-split": "^2.5.1",
-    "run-sequence": "^1.2.2",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.9.0"
+    "vinyl-source-stream": "^2.0.0"
   },
   "scripts": {
     "lint:js": "eslint app/ webpack.*.js --cache",
@@ -43,11 +39,16 @@
       [
         "babelify",
         {
-          "presets": [
-            "es2015"
-          ]
+          "presets": ["env"]
         }
       ]
     ]
-  }
+  },
+  "browserslist": [
+    "ie >= 9",
+    "safari >= 7",
+    "ios >= 7",
+    "android >= 4",
+    "Firefox ESR"
+  ]
 }

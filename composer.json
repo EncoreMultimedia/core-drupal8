@@ -1,12 +1,17 @@
 {
-    "name": "drupal-composer/drupal-project",
+    "name": "EncoreMultimedia/core-drupal8",
     "description": "Project template for Drupal 8 projects with composer",
     "type": "project",
     "license": "GPL-2.0+",
     "authors": [
         {
-            "name": "",
-            "role": ""
+            "name": "Johnny Martin"
+        },
+        {
+            "name": "Garrett Whitehorn"
+        },
+        {
+            "name": "Taylor Cammack"
         }
     ],
     "repositories": [
@@ -22,9 +27,10 @@
         "drupal/address": "^1.0",
         "drupal/admin_toolbar": "^1.19",
         "drupal/console": "^1.0.2",
-        "drupal/core": "~8.4",
+        "drupal/core": "~8.5.2",
         "drupal/ctools": "^3.0",
         "drupal/devel": "^1.0",
+        "drupal/drd_agent": "^3.7",
         "drupal/focal_point": "^1.0@beta",
         "drupal/google_analytics": "^2.1",
         "drupal/menu_block": "^1.4",
@@ -39,7 +45,7 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "~8.4"
+        "webflo/drupal-core-require-dev": "~8.5.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -70,6 +76,9 @@
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
             "@drupal-scaffold"
+        ],
+        "test": [
+          "./vendor/bin/phpunit || true"
         ]
     },
     "extra": {

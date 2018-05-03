@@ -1,16 +1,15 @@
 @charset 'utf-8';
 
-@import "base/build-tools";
-
 @import "vendor/breakpoint";
 
 @import "abstracts/mixins";
 @import "abstracts/mixin-animations";
 @import "abstracts/font-stacks";
-@import "abstracts/variables"; // imports other mixins
+@import "abstracts/variables";
 
-@import "base/base";
 @import "base/font-system";
+@import "base/base";
+@import "base/build-tools";
 @import "base/typography";
 
 @import "layout/header";

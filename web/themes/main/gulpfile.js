@@ -1,44 +1,34 @@
-const gulp          = require('gulp');
-const gutil         = require('gulp-util');
-const source        = require('vinyl-source-stream');
-const babelify      = require('babelify');
-const watchify      = require('watchify');
-const exorcist      = require('exorcist');
-const browserify    = require('browserify');
-const browserSync   = require('browser-sync').create();
-const uglify        = require("gulp-uglify");
-const runSequence   = require('run-sequence');
-const del           = require('del');
-const sass          = require('gulp-sass');
-const postcss       = require('gulp-postcss');
-const sourcemaps    = require('gulp-sourcemaps');
+
 const autoprefixer  = require('autoprefixer');
+const babelify      = require('babelify');
+const browserSync   = require('browser-sync').create();
+const browserify    = require('browserify');
 const mqpacker      = require('css-mqpacker');
 const cssnano       = require('cssnano');
-const criticalsplit = require('postcss-critical-split');
+const del           = require('del');
+const es            = require('event-stream');
+const exorcist      = require('exorcist');
+const gulp          = require('gulp');
 const clone         = require('gulp-clone');
 const concat        = require('gulp-concat');
-const es            = require('event-stream');
 const imagemin      = require('gulp-imagemin');
-
-const AUTOPREFIXER_BROWSERS = {
-  browsers: [
-    'ie >= 9',
-    'safari >= 7',
-    'ios >= 7',
-    'android >= 4',
-    'Firefox ESR',
-  ],
-};
+const postcss       = require('gulp-postcss');
+const sass          = require('gulp-sass');
+const sourcemaps    = require('gulp-sourcemaps');
+const uglify        = require("gulp-uglify");
+const criticalsplit = require('postcss-critical-split');
+const source        = require('vinyl-source-stream');
 
 const ASSETS = {
   images: './assets/images/**/*',
-  sass_base: './assets/sass',
-  sass_all: './assets/sass/**/*.scss',
-  sass_mains: [
-    './assets/sass/*.scss',
-    './assets/sass/nodes/*.scss'
-  ],
+  sass: {
+    base: './assets/sass',
+    all: './assets/sass/**/*.scss',
+    mains: [
+      './assets/sass/*.scss',
+      './assets/sass/nodes/*.scss'
+    ],
+  },
   scripts: './assets/js/**/*.js',
 };
 
@@ -49,37 +39,28 @@ const PUBLIC = {
   get all() { return [this.js, this.css, this.images]; },
 };
 
-
-
-// Watchify args contains necessary cache options to achieve fast incremental bundles.
-// See watchify readme for details. Adding debug true for source-map generation.
-watchify.args.debug = true;
 // Input file.
-var bundler =browserify({
-  // Required watchify args
-  cache: {}, packageCache: {}, fullPaths: false,
-  // Browserify Options
-  entries: ['./assets/js/scripts.js'],
+var bundler = browserify({
+  fullPaths: false,
+  entries: './assets/js/scripts.js',
   extensions: ['js'],
   insertGlobals : true,
   debug: true
-});
+})
+  .transform(babelify, {sourceMapRelative: 'assets/js'})
+  // On updates recompile
+  .on('update', bundle);
 
-// Babel transform
-bundler.transform(babelify.configure({
-  sourceMapRelative: 'assets/js'
-}));
-
-// On updates recompile
-bundler.on('update', bundle);
+/**
+ * Functions called by tasks
+ */
 
 function bundle() {
-
-  gutil.log('Compiling JS...');
+  console.log('Compiling JS...');
 
   return bundler.bundle()
     .on('error', function (err) {
-      gutil.log(err.message);
+      console.log(err.message);
       browserSync.notify("Browserify Error!");
       this.emit("end");
     })
@@ -88,50 +69,35 @@ function bundle() {
     .pipe(gulp.dest('./public/build/js'))
 }
 
-
-/**
- * Gulp task alias
- */
-
-gulp.task('clean:public', () =>
-  del(PUBLIC.all)
-);
-
-gulp.task('clean:build', () =>
-  del('public/build')
-);
-
-gulp.task('bundle', function () {
-  return bundle();
-});
-
-gulp.task('uglify', function() {
-  gulp.src('./public/build/js/*.js')
-    .pipe(uglify('scripts.min.js', {output: {
-      beautify: true
-    }}))
+function minifyJS() {
+  return gulp.src('./public/build/js/*.js')
+    .pipe(uglify({output: {beautify: true}}))
     .pipe(gulp.dest(PUBLIC.js))
     .pipe(browserSync.stream({once: true}));
-});
+}
 
-gulp.task('sass:watch', () =>
-  gulp.src(ASSETS.sass_mains, { base: ASSETS.sass_base })
+function sassdev() {
+  return gulp.src(ASSETS.sass.mains, { base: ASSETS.sass.base })
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
-      autoprefixer(AUTOPREFIXER_BROWSERS),
+      autoprefixer(),
       mqpacker({sort: true}),
       cssnano({ reduceIdents: false, autoprefixer: false, zindex: false }),
     ]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(PUBLIC.css))
     .pipe(browserSync.stream({once: true}))
-);
+}
 
-gulp.task('sass:build', () => {
-  let css = gulp.src(ASSETS.sass_mains, { base: ASSETS.sass_base })
+function sasswatch() {
+  return gulp.watch(ASSETS.sass.all, sassdev);
+}
+
+function sassbuild() {
+  let css = gulp.src(ASSETS.sass.mains, { base: ASSETS.sass.base })
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([ autoprefixer(AUTOPREFIXER_BROWSERS) ]));
+    .pipe(postcss([ autoprefixer() ]));
 
   let critical = css.pipe(clone())
     .pipe(concat('critical.css'))
@@ -149,30 +115,29 @@ gulp.task('sass:build', () => {
 
   return es.merge(critical, css)
     .pipe(gulp.dest(PUBLIC.css));
-});
+}
 
-gulp.task('imagemin', () => {
-    return gulp.src(ASSETS.images)
-      .pipe(imagemin([
-        imagemin.gifsicle({interlaced: true}),
-        imagemin.jpegtran({progressive: true}),
-        imagemin.optipng({optimizationLevel: 7}),
-        imagemin.svgo({
-          plugins: [{
-            removeViewBox: false,
-            removeEmptyAttrs: true,
-          }]
-        }),
-      ]))
-      .pipe(gulp.dest(PUBLIC.images))
-      .pipe(browserSync.stream())
-  }
-);
+function minifyImg() {
+  return gulp.src(ASSETS.images)
+    .pipe(imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.jpegtran({progressive: true}),
+      imagemin.optipng({optimizationLevel: 7}),
+      imagemin.svgo({
+        plugins: [{
+          removeViewBox: false,
+          removeEmptyAttrs: true,
+        }]
+      }),
+    ]))
+    .pipe(gulp.dest(PUBLIC.images))
+    .pipe(browserSync.stream())
+}
 
-/**
- * First bundle, then serve from the ./app directory
- */
-gulp.task('default', () => {
+function startDev(done) {
+  /**
+   * First bundle, then serve from the ./app directory
+   */
   browserSync.init({
     proxy: 'core8.lndo.site',
     injectChanges: true,
@@ -183,11 +148,34 @@ gulp.task('default', () => {
     }],
   });
 
-  gulp.watch(ASSETS.sass_all,['sass:watch']);
-  gulp.watch(ASSETS.images,['imagemin']);
-  gulp.watch(ASSETS.scripts,() => runSequence('bundle','uglify', 'clean:build'));
-});
+  sasswatch();
+  gulp.watch(ASSETS.images, minifyImg);
+  gulp.watch(ASSETS.scripts, gulp.series('bundle', 'uglify', 'clean:build'));
+  done();
+}
 
-gulp.task('build', () =>
-  runSequence('clean:public','bundle','uglify', 'sass:build', 'imagemin','clean:build')
+/**
+ * Gulp task aliases for CLI use
+ */
+
+gulp.task('clean:public', () => del(PUBLIC.all));
+
+gulp.task('clean:build', () => del(['public/build']));
+
+gulp.task('bundle', bundle);
+
+gulp.task('uglify', minifyJS);
+
+gulp.task('sass', sassdev)
+
+gulp.task('sass:watch', sasswatch);
+
+gulp.task('sass:build', sassbuild);
+
+gulp.task('imagemin', minifyImg);
+
+gulp.task('default', startDev);
+
+gulp.task('build',
+  gulp.series('clean:public', 'bundle', 'uglify', 'sass:build', 'imagemin', 'clean:build')
 );
