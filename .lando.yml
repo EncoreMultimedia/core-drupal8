@@ -11,6 +11,8 @@ config:
   webroot: web
   drush: composer
   xdebug: true
+  conf:
+    php: config/php/php.ini
 
 services:
   appserver:
