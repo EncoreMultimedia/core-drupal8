@@ -15,7 +15,7 @@ const imagemin      = require('gulp-imagemin');
 const postcss       = require('gulp-postcss');
 const sass          = require('gulp-sass');
 const sourcemaps    = require('gulp-sourcemaps');
-const uglify        = require("gulp-uglify");
+const uglify        = require('gulp-uglify');
 const criticalsplit = require('postcss-critical-split');
 const source        = require('vinyl-source-stream');
 
@@ -26,7 +26,7 @@ const ASSETS = {
     all: './assets/sass/**/*.scss',
     mains: [
       './assets/sass/*.scss',
-      './assets/sass/nodes/*.scss'
+      './assets/sass/nodes/*.scss',
     ],
   },
   scripts: './assets/js/**/*.js',
@@ -45,7 +45,7 @@ var bundler = browserify({
   entries: './assets/js/scripts.js',
   extensions: ['js'],
   insertGlobals : true,
-  debug: true
+  debug: true,
 })
   .transform(babelify, {sourceMapRelative: 'assets/js'})
   // On updates recompile
@@ -61,12 +61,12 @@ function bundle() {
   return bundler.bundle()
     .on('error', function (err) {
       console.log(err.message);
-      browserSync.notify("Browserify Error!");
-      this.emit("end");
+      browserSync.notify('Browserify Error!');
+      this.emit('end');
     })
     .pipe(exorcist('./public/build/js/scripts.js.map'))
     .pipe(source('scripts.js'))
-    .pipe(gulp.dest('./public/build/js'))
+    .pipe(gulp.dest('./public/build/js'));
 }
 
 function minifyJS() {
@@ -87,7 +87,7 @@ function sassdev() {
     ]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(PUBLIC.css))
-    .pipe(browserSync.stream({once: true}))
+    .pipe(browserSync.stream({once: true}));
 }
 
 function sasswatch() {
@@ -127,11 +127,11 @@ function minifyImg() {
         plugins: [{
           removeViewBox: false,
           removeEmptyAttrs: true,
-        }]
+        }],
       }),
     ]))
     .pipe(gulp.dest(PUBLIC.images))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 }
 
 function startDev(done) {
@@ -166,7 +166,7 @@ gulp.task('bundle', bundle);
 
 gulp.task('uglify', minifyJS);
 
-gulp.task('sass', sassdev)
+gulp.task('sass', sassdev);
 
 gulp.task('sass:watch', sasswatch);
 
