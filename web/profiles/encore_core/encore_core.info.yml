@@ -29,19 +29,25 @@ dependencies:
   - editor
   - ckeditor
   # Custom modules
+  - address
   - admin_toolbar
   - admin_toolbar_tools
-  - address
-  - telephone
+  - antibot
   - ctools
   - devel
-  - kint
+  - draggableviews
+  - drd_agent
   - focal_point
   - google_analytics
+  - kint
   - menu_block
   - menu_trail_by_path
+  - metatag
   - paragraphs
   - pathauto
+  - picture_background_formatter
+  - simple_sitemap
+  - telephone
   - token
   - webform
   - webform_ui
