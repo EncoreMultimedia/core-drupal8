@@ -13,7 +13,7 @@
 /web/.eslintignore
 /web/.eslintrc.json
 /web/.gitattributes
-/web/.htaccess
+/web/.ht*
 /web/autoload.php
 /web/index.php
 /web/robots.txt
