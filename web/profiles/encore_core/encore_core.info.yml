@@ -28,18 +28,17 @@ dependencies:
   - views_ui
   - editor
   - ckeditor
+  - telephone
+  - kint
   # Custom modules
-  - address
   - admin_toolbar
   - admin_toolbar_tools
   - antibot
   - ctools
   - devel
-  - draggableviews
   - drd_agent
   - focal_point
   - google_analytics
-  - kint
   - menu_block
   - menu_trail_by_path
   - metatag
@@ -47,7 +46,6 @@ dependencies:
   - pathauto
   - picture_background_formatter
   - simple_sitemap
-  - telephone
   - token
   - webform
   - webform_ui

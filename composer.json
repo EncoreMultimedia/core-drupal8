@@ -24,14 +24,12 @@
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6",
         "drupal-composer/drupal-scaffold": "dev-master",
-        "drupal/address": "^1.0",
         "drupal/admin_toolbar": "^1.19",
         "drupal/antibot": "^1.2",
         "drupal/console": "^1.0.2",
-        "drupal/core": "~8.5.2",
+        "drupal/core": "~8.5.3",
         "drupal/ctools": "^3.0",
         "drupal/devel": "^1.0",
-        "drupal/draggableviews": "^1.x-dev",
         "drupal/drd_agent": "^3.7",
         "drupal/focal_point": "^1.0@beta",
         "drupal/google_analytics": "^2.1",
@@ -50,6 +48,11 @@
     },
     "require-dev": {
         "webflo/drupal-core-require-dev": "~8.5.2"
+    },
+    "suggest": {
+        "drupal/address": "^1.0; Provides functionality for storing, validating and displaying international postal addresses.",
+        "drupal/draggableviews": "^1.x-dev; allows you to make front-end view rows draggable like those on the back-end",
+        "drupal/video_embed_field": "^2.0; Provides field type that accepts YouTube/Vimeo video URLs and generates an embedded video.",
     },
     "conflict": {
         "drupal/drupal": "*"
