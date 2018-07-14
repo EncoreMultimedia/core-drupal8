@@ -52,7 +52,7 @@
     "suggest": {
         "drupal/address": "^1.0; Provides functionality for storing, validating and displaying international postal addresses.",
         "drupal/draggableviews": "^1.x-dev; allows you to make front-end view rows draggable like those on the back-end",
-        "drupal/video_embed_field": "^2.0; Provides field type that accepts YouTube/Vimeo video URLs and generates an embedded video.",
+        "drupal/video_embed_field": "^2.0; Provides field type that accepts YouTube/Vimeo video URLs and generates an embedded video."
     },
     "conflict": {
         "drupal/drupal": "*"
