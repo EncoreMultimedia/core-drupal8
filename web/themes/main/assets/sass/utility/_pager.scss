@@ -1,6 +1,7 @@
 .pager__item {
   display: inline;
-  a {
+
+  :link {
     display: inline-block;
   }
 }

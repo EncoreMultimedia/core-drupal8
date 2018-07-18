@@ -1,0 +1,22 @@
+/// Targets a[href] and area[href], but not a[name]
+:link {
+
+}
+
+/// Inherits and overrides :link
+:visited {
+
+}
+
+:link,
+:visited {
+  /// Inherits and overrides :link and :visited but avoids any other elements that can :hover
+  &:hover {
+
+  }
+
+  /// Inherits and overrides :link and :visited but avoids any other elements that can be :active
+  &:active {
+
+  }
+}
