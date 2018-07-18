@@ -11,7 +11,9 @@
     margin-right: 5px;
   }
 
-  :link {
+  :link,
+  :visited,
+  :any-link {
     margin-top: 5px;
     background-color: $color_tab_background;
     color: $color_tab_color;

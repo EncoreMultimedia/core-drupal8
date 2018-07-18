@@ -1,7 +1,8 @@
 .pager__item {
   display: inline;
 
-  :link {
+  :link,
+  :any-link {
     display: inline-block;
   }
 }

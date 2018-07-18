@@ -1,15 +1,18 @@
 /// Targets a[href] and area[href], but not a[name]
-:link {
+/// :any-link is a future spec that targets both :link and :visited
+:link,
+:any-link {
 
 }
 
-/// Inherits and overrides :link
+/// Inherits and overrides :link/:any-link
 :visited {
 
 }
 
 :link,
-:visited {
+:visited,
+:any-link {
   /// Inherits and overrides :link and :visited but avoids any other elements that can :hover
   &:hover {
 
