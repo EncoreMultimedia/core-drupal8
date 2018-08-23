@@ -9,10 +9,7 @@
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return ($number / ($number * 0 + 1));
-  }
-  @return $number;
+  @return ($number / ($number * 0 + 1));
 }
 
 // Removes units only from zero-values (like 0px)
