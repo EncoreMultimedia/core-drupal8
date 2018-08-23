@@ -46,18 +46,6 @@
     $sm: $sm * 1px;
   }
 
-  @if not (unitless($lg) or unit($sm) == unit($lg)) {
-    @error 'Element size units (first two parameters) do not match.';
-  }
-
-  @if unitless($narrow) {
-    @error '$narrow (third parameter) requires units to be specified.';
-  }
-
-  @if not (unitless($wide) or unit($narrow) == unit($wide)) {
-    @error 'Viewport width units (last two parameters) do not match.';
-  }
-
   @if unit($narrow) == 'em' {
     $narrow: strip-unit($narrow) * 1rem;
     $wide: strip-unit($wide) * 1rem;
