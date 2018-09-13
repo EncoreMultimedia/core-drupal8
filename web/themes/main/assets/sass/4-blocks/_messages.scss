@@ -19,7 +19,7 @@
   font-weight: 900;
   position: relative;
 
-  &:before {
+  &::before {
     content: "";
     display: block;
     width: rem(32);
@@ -39,7 +39,7 @@
   color: $color_yellow;
   background-color: $color_light_yellow;
 
-  &:before {
+  &::before {
     background: url(../../images/warning.svg) no-repeat;
   }
 
@@ -52,7 +52,7 @@
   color: $color_red;
   background-color: $color_light_red;
 
-  &:before {
+  &::before {
     background: url(../../images/error.svg) no-repeat;
   }
 
@@ -66,7 +66,7 @@
   background-color: $color_light_blue;
   box-shadow: -8px 0 0 $color_blue;
 
-  &:before {
+  &::before {
     background: url(../../images/success.svg) no-repeat;
   }
 

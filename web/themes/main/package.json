@@ -7,8 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^7.0.0",
-    "babel-preset-env": "^1.5.0",
     "babel-core": "^6.0.14",
+    "babel-preset-env": "^1.5.0",
     "babelify": "^8.0.0",
     "browser-sync": "^2.23.0",
     "browserify": "^16.0.0",
@@ -39,7 +39,9 @@
       [
         "babelify",
         {
-          "presets": ["env"]
+          "presets": [
+            "env"
+          ]
         }
       ]
     ]

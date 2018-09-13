@@ -2,7 +2,6 @@ global:
   version: 1.0
   css:
     theme:
-      public/css/utility.css: {}
       public/css/main.css: {}
   js:
     public/js/scripts.js: {}

@@ -1,0 +1,368 @@
+// Normalization from garrettw/vitals
+// with a few things added to body
+
+$stdvgap: 1.125rem !default; // 18px
+$stdhgap: 1.25rem !default;  // 20px
+
+html {
+  // better box-sizing (opinionated)
+  box-sizing: border-box;
+  // provides a hard size for rem units to refer to, which pulls from user's browser setting
+  font-size: 1em;
+  // correct line-height in all browsers
+  line-height: 1.15;
+  // prevent adjustments of font-size after orientation changes - iOS
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  // better box-sizing (opinionated)
+  box-sizing: inherit;
+}
+
+body {
+  // no horizontal scrolling ever (opinionated)
+  overflow-x: hidden;
+  // body should fill the screen vertically (opinionated)
+  min-height: 100%;
+  // body shouldn't have a margin (opinionated)
+  margin: 0;
+  // Encore additions
+  hyphens: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Correct font size and margin within section and
+ * article contexts - Chrome, Firefox, and Safari
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+hr {
+  // Add the correct box sizing - Firefox
+  box-sizing: content-box;
+  height: 0;
+  // Show the overflow - Edge and IE
+  overflow: visible;
+}
+
+pre,
+code,
+kbd,
+samp {
+  // Correct inheritance and scaling of font size - all browsers
+  font-family: monospace, monospace;
+  // Correct odd em font sizing - all browsers
+  font-size: 1em;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+abbr[title] {
+  // Remove the bottom border - Chrome 57-
+  border-bottom: none;
+  // Add the correct text decoration - Chrome, Edge, IE, Opera, and Safari
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  // Add the correct font weight - Chrome, Edge, and Safari
+  font-weight: bolder;
+}
+
+small {
+  // Add the correct font size - all browsers
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Forms
+   ========================================================================== */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  max-width: 100%;
+  // Change the font styles - all browsers
+  font-size: 100%;
+  line-height: inherit;
+  // Remove the margin - Firefox and Safari
+  margin: 0;
+}
+
+button,
+input {
+  // Show the overflow - IE and Edge
+  overflow: visible;
+}
+
+button,
+select {
+  // Remove the inheritance of text transform - Edge, Firefox, and IE
+  text-transform: none;
+}
+
+// From https://github.com/h5bp/html5-boilerplate/pull/1403#issuecomment-25126183
+input:disabled,
+textarea:disabled {
+  color: #404040;
+  opacity: 0.8;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  display: inline-block;
+  -moz-appearance: button;
+  // Correct the inability to style clickable types - iOS and Safari
+  -webkit-appearance: button;
+  padding: 0.125em 0.375em;
+  text-decoration: none;
+  cursor: pointer;
+
+  &::-moz-focus-inner {
+    // Remove the inner border and padding - Firefox
+    padding: 0;
+    border: none;
+  }
+
+  &:-moz-focusring {
+    // Restore the focus styles unset by the previous rule
+    outline: 1px dotted ButtonText;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+optgroup,
+select {
+  &:disabled {
+    color: #808080;
+    cursor: default;
+    opacity: 1;
+  }
+}
+
+fieldset {
+  // Correct the padding - Firefox
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  // Correct the text wrapping - Edge and IE
+  box-sizing: border-box;
+  display: table;
+  max-width: 100%;
+  white-space: normal;
+  // Correct the color inheritance from fieldset elements - IE
+  color: inherit;
+  // Remove padding so devs are not surprised when they zero out fieldset elements - all browsers
+  padding: 0;
+}
+
+progress {
+  // Add the correct vertical alignment - Chrome, Firefox, and Opera
+  vertical-align: baseline;
+}
+
+textarea {
+  // Remove the default vertical scrollbar - IE 11
+  overflow: auto;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  // Correct the cursor style of increment and decrement buttons - Chrome
+  height: auto;
+}
+
+[type="search"] {
+  // Correct  odd appearance - Chrome and Safari
+  -webkit-appearance: textfield;
+  // Correct the outline style - Safari
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  // Remove the inner padding - Chrome and Safari on macOS
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  // Correct the inability to style clickable types - iOS and Safari
+  -webkit-appearance: button;
+}
+
+/* Interactive
+   ========================================================================== */
+
+details {
+  // Add the correct display - Edge, IE 11, and Firefox
+  display: block;
+}
+
+summary {
+  // Add the correct display - all browsers
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+template {
+  // Add the correct display - IE 11
+  display: none;
+}
+
+
+
+
+///////////////////
+// Sane defaults //
+///////////////////
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+figure,
+ol,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+p,
+pre,
+hr {
+  margin: $stdvgap 0;
+}
+
+blockquote {
+  margin: $stdvgap $stdhgap*1.6;
+}
+
+a,
+button {
+  color: inherit;
+}
+
+a {
+  text-decoration: underline;
+}
+
+a,
+a:not(.button):active {
+  background-color: transparent;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: none;
+}
+
+svg {
+  overflow: hidden;
+  fill: currentColor;
+
+  &:root {
+    overflow: visible;
+  }
+}
+
+[disabled] {
+  cursor: default;
+  opacity: 0.5;
+}
+
+fieldset {
+  min-width: 0;
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+  display: table-cell;
+}
+
+legend {
+  margin-left: $stdhgap*-0.25;
+  padding: 0 $stdhgap*0.25;
+  border: none;
+}
+
+textarea {
+  vertical-align: top;
+  resize: vertical;
+}
+
+details,
+main {
+  display: block;
+}
+
+table {
+  margin: $stdvgap 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+cite,
+dfn,
+em {
+  font-style: italic;
+}
+
+iframe {
+  border: none;
+}
+
+optgroup {
+  font-weight: 700;
+}

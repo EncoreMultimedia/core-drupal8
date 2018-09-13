@@ -1,0 +1,133 @@
+
+.region {
+  padding: 0 $padding_mobile_side 0;
+
+  @include breakpoint($bpw_luke) {
+    padding: 0 $padding_tablet_side 0;
+  }
+
+  @include breakpoint($bpw_jabba) {
+    padding: 0 $padding_desktop_side 0;
+  }
+}
+
+.region-wrapper {
+  @include breakpoint($bpw_jabba) {
+    max-width: $max_width;
+    margin: 0 auto;
+  }
+}
+
+#navigation {
+  li {
+    list-style-type: none;
+    display: inline-block;
+  }
+}
+
+.burger-icon {
+  width: 22px;
+  height: 22px;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  position: relative;
+
+  @include breakpoint($bpw_jabba) {
+    display: none;
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: $color_black;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 9px;
+    }
+
+    &:nth-child(4) {
+      top: 18px;
+    }
+  }
+
+  &.open span {
+    &:nth-child(1) {
+      top: 9px;
+      width: 0%;
+      left: 50%;
+      opacity: 0;
+    }
+
+    &:nth-child(2) {
+      transform: rotate(45deg);
+    }
+
+    &:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    &:nth-child(4) {
+      top: 9px;
+      width: 0%;
+      left: 50%;
+      opacity: 0;
+    }
+  }
+}
+
+.pager__item {
+  display: inline;
+
+  a[href] {
+    display: inline-block;
+  }
+}
+
+.site-name {
+  font-size: 2.2em;
+  line-height: 1.3em;
+  font-weight: 300;
+  padding: 0 0 0.5em;
+  margin: 0;
+}
+
+// Tabs.
+.tabs ul {
+  max-width: $max_width;
+  width: 100%;
+  margin: 0 auto 5px;
+  border-bottom: 2px solid $color_tab_border_bottom;
+  padding: 0 0 4px;
+
+  li {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  a[href] {
+    margin-top: 5px;
+    background-color: $color_tab_background;
+    color: $color_tab_color;
+    display: block;
+    text-decoration: none;
+    padding: 3px 10px;
+
+    &:hover {
+      background-color: $color_tab_hover;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+}

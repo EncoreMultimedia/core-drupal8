@@ -26,7 +26,7 @@ const ASSETS = {
     all: './assets/sass/**/*.scss',
     mains: [
       './assets/sass/*.scss',
-      './assets/sass/nodes/*.scss',
+      './assets/sass/2-nodes/*.scss',
     ],
   },
   scripts: './assets/js/**/*.js',

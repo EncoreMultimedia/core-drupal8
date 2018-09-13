@@ -1,0 +1,33 @@
+@media print {
+  .sidebar,
+  #navigation,
+  #header-region,
+  #footer,
+  .breadcrumb,
+  .tabs,
+  .feed-icon,
+  .links {
+    display: none;
+  }
+
+  .layout-container {
+    width: 100%;
+  }
+
+  #content,
+  .title {
+    margin: 20px 0;
+    width: auto;
+  }
+
+  a[href] {
+    color: black;
+
+    // CSS2 selector to add visible href after links.
+    #content &::after {
+      content: " (" attr(href) ") ";
+      font-size: 0.8em;
+      font-weight: normal;
+    }
+  }
+}
