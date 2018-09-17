@@ -1,6 +1,6 @@
 {
   "name": "core-drupal8",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "repository": "https://github.com/EncoreMultimedia/core-drupal8.git",
   "author": "TheLostCookie <TheLostCookie@3454003.no-reply.drupal.org>",
@@ -27,12 +27,18 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "postcss-critical-split": "^2.5.1",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0",
+    "stylelint-checkstyle-formatter": "^0.1.0",
+    "stylelint-no-browser-hacks": "^1.0.2",
     "vinyl-source-stream": "^2.0.0"
   },
   "scripts": {
-    "lint:js": "eslint app/ webpack.*.js --cache",
     "start": "gulp",
-    "build": "gulp build"
+    "build": "gulp build",
+    "lint:js": "eslint app/ webpack.*.js --cache",
+    "lint:css": "stylelint \"**/*.css\" || exit 0",
+    "lint:css-checkstyle": "stylelint \"**/*.css\" --custom-formatter ./node_modules/stylelint-checkstyle-formatter/index.js || exit 0"
   },
   "browserify": {
     "transform": [
