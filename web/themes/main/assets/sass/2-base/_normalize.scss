@@ -15,7 +15,9 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   // better box-sizing (opinionated)
   box-sizing: inherit;
 }
@@ -254,9 +256,6 @@ template {
   // Add the correct display - IE 11
   display: none;
 }
-
-
-
 
 ///////////////////
 // Sane defaults //

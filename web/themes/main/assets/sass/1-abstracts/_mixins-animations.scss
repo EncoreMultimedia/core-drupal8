@@ -2,11 +2,9 @@
 @mixin navRight() {
   @keyframes navFadeInRight {
     0% {
-
       transform: translateX(100vw);
     }
     100% {
-
       transform: translateX(0);
     }
   }
@@ -32,11 +30,9 @@
 @mixin navLeft() {
   @keyframes navFadeInLeft {
     0% {
-
       transform: translateX(-100vw);
     }
     100% {
-
       transform: translateX(0);
     }
   }
@@ -76,7 +72,6 @@
   }
 }
 
-
 @mixin fadeInRight() {
   @keyframes fadeInRight {
     0% {
@@ -92,7 +87,6 @@
   .fadeInRight {
     animation-name: fadeInRight;
   }
-
 }
 
 @mixin fadeInDown() {
@@ -130,32 +124,27 @@
 }
 
 @mixin animation($value) {
-
-  @if($value == 'nav_right') {
+  @if ($value == 'nav_right') {
     @include navRight;
   }
 
-  @if($value == 'nav_left') {
+  @if ($value == 'nav_left') {
     @include navLeft;
   }
 
-  @if($value == 'fadeInTop') {
+  @if ($value == 'fadeInTop') {
     @include fadeInTop;
   }
 
-  @if($value == 'fadeInRight') {
+  @if ($value == 'fadeInRight') {
     @include fadeInRight;
   }
 
-  @if($value == 'fadeInDown') {
+  @if ($value == 'fadeInDown') {
     @include fadeInDown;
   }
 
-  @if($value == 'fadeInLeft') {
+  @if ($value == 'fadeInLeft') {
     @include fadeInLeft;
   }
-
 }
-
-
-

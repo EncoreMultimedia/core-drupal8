@@ -13,21 +13,25 @@ $item-gutter: $stdhgap/2 !default;
 
 @mixin flex-row {
   @include flex;
+
   flex-flow: row wrap;
 }
 
 @mixin flex-row-reverse {
   @include flex;
+
   flex-flow: row-reverse wrap;
 }
 
 @mixin flex-col {
   @include flex;
+
   flex-flow: column wrap;
 }
 
 @mixin flex-col-reverse {
   @include flex;
+
   flex-flow: column-reverse wrap;
 }
 

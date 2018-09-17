@@ -3,7 +3,6 @@
 // Folder numbering is a mental aid to remember cascade path
 
 @import "0-vendor/breakpoint";
-
 @import "1-abstracts/mixins-units";
 @import "1-abstracts/mixins-animations";
 @import "1-abstracts/mixins-box-shadow";
@@ -11,19 +10,16 @@
 @import "1-abstracts/mixins-misc";
 @import "1-abstracts/font-stacks";
 @import "1-abstracts/variables";
-
 @import "2-base/font-system";
 @import "2-base/normalize";
 @import "2-base/elements";
 @import "2-base/classes";
 @import "2-base/build-tools";
 @import "2-base/print";
-
 @import "3-regions/header";
 @import "3-regions/messages";
 @import "3-regions/content";
 @import "3-regions/footer";
-
 @import "4-blocks/breadcrumb";
 @import "4-blocks/blocks";
 @import "4-blocks/main-menu";

@@ -14,8 +14,8 @@ $secondary_font: $montserrat;
 // =============================================================================
 
 //primary
-$color_white:           #ffffff;
-$color_black:           #000000;
+$color_white:           #fff;
+$color_black:           #000;
 $color_blue:            #1779ba;
 $color_encore_blue:     #0278ff;
 
@@ -35,7 +35,7 @@ $color_font_black:      #313131;
 // =============================================================================
 $color_tab_border_bottom: $color_blue;
 $color_tab_background:    $color_blue;
-$color_tab_hover:         rgba($color_blue, .9);
+$color_tab_hover:         rgba($color_blue, 0.9);
 $color_tab_color:         $color_white;
 
 // =============================================================================

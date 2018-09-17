@@ -20,6 +20,7 @@ $PI: 3.141592653589793;
 
   @else if type-of($angle) != number or not unitless($angle) {
     @warn "#{ $angle } is not a valid number.";
+
     @return $angle;
   }
 }
@@ -42,7 +43,6 @@ $PI: 3.141592653589793;
   @return $ret;
 }
 
-
 // Returns the sine of a number.
 // @param {Number} $x A number in rad or deg. Assuming unitless number to be in rad.
 // @example
@@ -50,6 +50,7 @@ $PI: 3.141592653589793;
 //     sin(60deg)  // 0.86603
 @function sin($x) {
   $x: unitless-rad($x);
+
   @return cos($x - $PI / 2);
 }
 

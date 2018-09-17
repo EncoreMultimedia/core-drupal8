@@ -28,7 +28,7 @@
 .burger-icon {
   width: 22px;
   height: 22px;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   cursor: pointer;
   position: relative;
 
@@ -46,8 +46,7 @@
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
-    transition: .25s ease-in-out;
-
+    transition: 0.25s ease-in-out;
 
     &:nth-child(1) {
       top: 0;
