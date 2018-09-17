@@ -30,7 +30,6 @@
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
     "stylelint-checkstyle-formatter": "^0.1.0",
-    "stylelint-no-browser-hacks": "^1.0.2",
     "vinyl-source-stream": "^2.0.0"
   },
   "scripts": {
