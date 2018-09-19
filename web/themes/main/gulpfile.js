@@ -19,35 +19,53 @@ const uglify        = require('gulp-uglify');
 const criticalsplit = require('postcss-critical-split');
 const source        = require('vinyl-source-stream');
 
-const ASSETS = {
-  images: './assets/images/**/*',
-  sass: {
-    base: './assets/sass',
-    all: './assets/sass/**/*.scss',
-    mains: [
-      './assets/sass/*.scss',
-      './assets/sass/2-nodes/*.scss',
-    ],
+const PATHS = {
+  source: {
+    base: './assets',
+    sass: {
+      base: '/sass',
+      get all() { return this.base + '/**/*.scss'; },
+      get mains() { return [
+        this.base + '/*.scss',
+        this.base + '/2-nodes/*.scss',
+      ]; },
+    },
+    js: {
+      base: '/js',
+      get all() { return this.base + '/**/*.js'; },
+    },
+    get images() { return this.base + '/images/**/*'; }
   },
-  scripts: './assets/js/**/*.js',
-};
+  output: {
+    base: './public/build',
+    get js() { return this.base + '/js'; }
+  },
+  outputMinified: {
+    base: './public',
+    get js() { return this.base + '/js'; },
+    get css() { return this.base + '/css'; },
+    get images() { return this.base + '/images'; },
+    get all() { return [this.js, this.css, this.images]; }
+  },
+  jsMain: 'scripts.js',
 
-const PUBLIC = {
-  js: './public/js',
-  css: './public/css',
-  images: './public/images',
-  get all() { return [this.js, this.css, this.images]; },
-};
+  init: function() {
+    this.source.sass.base = this.source.base + this.source.sass.base;
+    this.source.js.base = this.source.base + this.source.js.base;
+    delete this.init;
+    return this;
+  }
+}.init();
 
 // Input file.
 var bundler = browserify({
   fullPaths: false,
-  entries: './assets/js/scripts.js',
+  entries: PATHS.source.js.base + '/' + PATHS.jsMain,
   extensions: ['js'],
   insertGlobals : true,
   debug: true,
 })
-  .transform(babelify, {sourceMapRelative: 'assets/js'})
+  .transform(babelify, {sourceMapRelative: PATHS.source.js.base})
   // On updates recompile
   .on('update', bundle);
 
@@ -64,20 +82,20 @@ function bundle() {
       browserSync.notify('Browserify Error!');
       this.emit('end');
     })
-    .pipe(exorcist('./public/build/js/scripts.js.map'))
-    .pipe(source('scripts.js'))
-    .pipe(gulp.dest('./public/build/js'));
+    .pipe(exorcist(PATHS.output.js + '/' + PATHS.jsMain + '.map'))
+    .pipe(source(PATHS.jsMain))
+    .pipe(gulp.dest(PATHS.output.js));
 }
 
 function minifyJS() {
-  return gulp.src('./public/build/js/*.js')
+  return gulp.src(PATHS.output.js + '/*.js')
     .pipe(uglify({output: {beautify: true}}))
-    .pipe(gulp.dest(PUBLIC.js))
+    .pipe(gulp.dest(PATHS.outputMinified.js))
     .pipe(browserSync.stream({once: true}));
 }
 
 function sassdev() {
-  return gulp.src(ASSETS.sass.mains, { base: ASSETS.sass.base })
+  return gulp.src(PATHS.source.sass.mains, { base: PATHS.source.sass.base })
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
@@ -86,16 +104,16 @@ function sassdev() {
       cssnano({ reduceIdents: false, autoprefixer: false, zindex: false }),
     ]))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(PUBLIC.css))
+    .pipe(gulp.dest(PATHS.outputMinified.css))
     .pipe(browserSync.stream({once: true}));
 }
 
 function sasswatch() {
-  return gulp.watch(ASSETS.sass.all, sassdev);
+  return gulp.watch(PATHS.source.sass.all, sassdev);
 }
 
 function sassbuild() {
-  let css = gulp.src(ASSETS.sass.mains, { base: ASSETS.sass.base })
+  let css = gulp.src(PATHS.source.sass.mains, { base: PATHS.source.sass.base })
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([ autoprefixer() ]));
 
@@ -114,11 +132,11 @@ function sassbuild() {
   ]));
 
   return es.merge(critical, css)
-    .pipe(gulp.dest(PUBLIC.css));
+    .pipe(gulp.dest(PATHS.outputMinified.css));
 }
 
 function minifyImg() {
-  return gulp.src(ASSETS.images)
+  return gulp.src(PATHS.source.images)
     .pipe(imagemin([
       imagemin.gifsicle({interlaced: true}),
       imagemin.jpegtran({progressive: true}),
@@ -130,7 +148,7 @@ function minifyImg() {
         }],
       }),
     ]))
-    .pipe(gulp.dest(PUBLIC.images))
+    .pipe(gulp.dest(PATHS.outputMinified.images))
     .pipe(browserSync.stream());
 }
 
@@ -149,8 +167,8 @@ function startDev(done) {
   });
 
   sasswatch();
-  gulp.watch(ASSETS.images, minifyImg);
-  gulp.watch(ASSETS.scripts, gulp.series('bundle', 'uglify', 'clean:build'));
+  gulp.watch(PATHS.source.images, minifyImg);
+  gulp.watch(PATHS.source.js.all, gulp.series('bundle', 'uglify', 'clean:build'));
   done();
 }
 
@@ -158,9 +176,9 @@ function startDev(done) {
  * Gulp task aliases for CLI use
  */
 
-gulp.task('clean:public', () => del(PUBLIC.all));
+gulp.task('clean:public', () => del(PATHS.outputMinified.all));
 
-gulp.task('clean:build', () => del(['public/build']));
+gulp.task('clean:build', () => del([PATHS.output.base]));
 
 gulp.task('bundle', bundle);
 
