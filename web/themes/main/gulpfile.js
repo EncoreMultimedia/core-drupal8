@@ -101,7 +101,7 @@ function sassdev() {
     .pipe(postcss([
       autoprefixer(),
       mqpacker({sort: true}),
-      cssnano({ reduceIdents: false, autoprefixer: false, zindex: false }),
+      cssnano(),
     ]))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(PATHS.outputMinified.css))
@@ -122,13 +122,13 @@ function sassbuild() {
     .pipe(postcss([
       criticalsplit({output: 'critical'}),
       //mqpacker({sort: true}),
-      cssnano({ reduceIdents: false, autoprefixer: false }),
+      cssnano(),
     ]));
 
   css.pipe(postcss([
     criticalsplit({output: 'rest'}),
     //mqpacker({sort: true}),
-    cssnano({ reduceIdents: false, autoprefixer: false, zindex: false }),
+    cssnano(),
   ]));
 
   return es.merge(critical, css)

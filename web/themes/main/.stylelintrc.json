@@ -1,6 +1,10 @@
 {
   "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-scss"
+  ],
   "rules": {
+    "at-rule-no-unknown": null,
     "color-hex-case": "lower",
     "comment-empty-line-before": null,
     "declaration-block-no-duplicate-properties": null,
@@ -14,7 +18,8 @@
     "rule-empty-line-before": null,
     "selector-pseudo-element-colon-notation": null,
     "shorthand-property-no-redundant-values": null,
-    "unit-whitelist": ["deg", "em", "ex", "ms", "rem", "%", "s", "px", "vw", "vh"]
+    "unit-whitelist": ["deg", "em", "ex", "ms", "rem", "%", "s", "px", "vw", "vh"],
+    "scss/at-rule-no-unknown": true
   },
   "ignoreFiles": [
     "public/css/**/*.css",
