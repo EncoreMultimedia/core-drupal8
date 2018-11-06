@@ -21,7 +21,7 @@
     "gulp": "^4.0.0",
     "gulp-clone": "^2.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^4.1.0",
+    "gulp-imagemin": "^5.0.3",
     "gulp-postcss": "^7.0.1",
     "gulp-sass": "^4.0.0",
     "gulp-sourcemaps": "^2.6.0",
