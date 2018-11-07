@@ -65,7 +65,7 @@ var bundler = browserify({
   insertGlobals : true,
   debug: true,
 })
-  .transform(babelify, {sourceMapRelative: PATHS.source.js.base})
+  .transform(babelify)
   // On updates recompile
   .on('update', bundle);
 
