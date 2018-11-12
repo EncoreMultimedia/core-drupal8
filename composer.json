@@ -27,7 +27,7 @@
         "drupal/admin_toolbar": "^1.19",
         "drupal/antibot": "^1.2",
         "drupal/console": "^1.0.2",
-        "drupal/core": "~8.5.7",
+        "drupal/core": "~8.5.8",
         "drupal/ctools": "^3.0",
         "drupal/devel": "^1.0",
         "drupal/drd_agent": "^3.7",
@@ -47,7 +47,7 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "~8.5.2"
+        "webflo/drupal-core-require-dev": "~8.5.8"
     },
     "suggest": {
         "drupal/address": "^1.0; Provides functionality for storing, validating and displaying international postal addresses.",
