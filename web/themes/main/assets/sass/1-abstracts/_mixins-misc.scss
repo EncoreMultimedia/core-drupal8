@@ -197,3 +197,31 @@
   display: inline-block;
   width: auto;
 }
+
+///
+/// This is for when you want your flex items to wrap in a particular way -
+/// for example, say you have 3 items side-by-side on desktop which stack at
+/// 100% width on mobile -- but tablet does some weird combination of the two.
+/// So instead of writing an imprecise media query to set a breakpoint (or
+/// transition point), use this on the flex container to transition based on the
+/// *container's* width.
+///
+/// This code was based first on:
+/// http://www.heydonworks.com/article/the-flexbox-holy-albatross
+/// and then updated based on:
+/// http://www.heydonworks.com/article/the-flexbox-holy-albatross-reincarnated
+/// by a commenter whose code is located at:
+/// https://codepen.io/perpetualgrimace/pen/XOKzzo?editors=1100
+///
+@mixin container-query ($maxWidth: 400px, $margin: 1rem) {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$margin;
+
+  & > * {
+    flex-grow: 1;
+    width: 100%; /* fallback */
+    flex-basis: calc((#{$maxWidth} * 999.999) - (100% * 999.999));
+    margin: $margin;
+  }
+}
