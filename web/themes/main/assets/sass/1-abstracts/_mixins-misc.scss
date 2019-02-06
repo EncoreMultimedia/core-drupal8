@@ -24,8 +24,8 @@
   }
 
   @if unit($narrow) == 'em' {
-    $narrow: strip-unit($narrow) * 1rem;
-    $wide: strip-unit($wide) * 1rem;
+    $narrow: ($narrow / 1em) * 1rem;
+    $wide: ($wide / 1em) * 1rem;
   }
 
   @if unit($narrow) == 'rem' and unit($sm) == 'px' {
