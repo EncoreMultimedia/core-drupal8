@@ -1,5 +1,6 @@
 // To make this file work if used on its own, uncomment the following line
 // $base-font-size: 16px !default;
+$PI: 3.141592653589793;
 
 /// Remove the unit of a length
 /// @param {Number} $number - Number to remove unit from
@@ -32,4 +33,45 @@
 
 @function px($em, $context: $base-font-size) {
   @return (strip-unit($em) * $context);
+}
+
+// Circle geometry conversions
+@function deg($drgt) {
+  @return map-get((
+    deg: $drgt,
+    rad: ($drgt / 1rad) * 180 / $PI * 1deg,
+    grad: ($drgt / 400grad) * 360deg,
+    turn: ($drgt / 1turn) * 360deg,
+    "": $drgt * 1deg
+  ), unit($drgt));
+}
+
+@function rad($drgt) {
+  @return map-get((
+    deg: ($drgt / 1deg) * $PI / 180 * 1rad,
+    rad: $drgt,
+    grad: ($drgt / 400grad) * 360 * $PI / 180 * 1rad,
+    turn: ($drgt / 1turn) * 360 * $PI / 180 * 1rad,
+    "": $drgt * 1rad
+  ), unit($drgt));
+}
+
+@function grad($drgt) {
+  @return map-get((
+    deg: ($drgt / 360deg) * 400grad,
+    rad: ($drgt * 180 / $PI / 360rad) * 400grad,
+    grad: $drgt,
+    turn: ($drgt / 1turn) * 400grad,
+    "": $drgt * 1grad
+  ), unit($drgt));
+}
+
+@function turn($drgt) {
+  @return map-get((
+    deg: ($drgt / 360deg) * 1turn,
+    rad: ($drgt * 180 / $PI / 360rad) * 1turn,
+    grad: ($drgt / 400grad) * 1turn,
+    turn: $drgt,
+    "": $drgt * 1turn
+  ), unit($drgt));
 }
