@@ -2,10 +2,13 @@
     "name": "EncoreMultimedia/core-drupal8",
     "description": "Project template for Drupal 8 projects with composer",
     "type": "project",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Johnny Martin"
+        },
+        {
+            "name": "Jeff Fortune"
         },
         {
             "name": "Garrett Whitehorn"
@@ -18,16 +21,21 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
     ],
     "require": {
+        "php": ">=5.6",
         "composer/installers": "^1.2",
-        "cweagans/composer-patches": "^1.6",
-        "drupal-composer/drupal-scaffold": "dev-master",
+        "cweagans/composer-patches": "^1.6.5",
+        "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/admin_toolbar": "^1.19",
         "drupal/antibot": "^1.2",
         "drupal/console": "^1.0.2",
-        "drupal/core": "~8.5.8",
+        "drupal/core": "~8.6.0",
         "drupal/ctools": "^3.0",
         "drupal/devel": "^1.0",
         "drupal/drd_agent": "^3.7",
@@ -43,11 +51,14 @@
         "drupal/token": "^1.0",
         "drupal/webform": "^5.0",
         "drush/drush": "^9.0.0",
+        "oomphinc/composer-installers-extender": "^1.1",
+        "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
-        "webmozart/path-util": "^2.3"
+        "webmozart/path-util": "^2.3",
+        "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "~8.5.8"
+        "webflo/drupal-core-require-dev": "~8.6.0"
     },
     "suggest": {
         "drupal/address": "^1.0; Provides functionality for storing, validating and displaying international postal addresses.",
@@ -66,6 +77,9 @@
     "autoload": {
         "classmap": [
             "scripts/composer/ScriptHandler.php"
+        ],
+        "files": [
+            "load.environment.php"
         ]
     },
     "scripts": {
@@ -89,13 +103,31 @@
         ]
     },
     "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "installer-types": [
+            "npm-asset",
+            "component"
+        ],
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:npm-asset",
+                "type:component"
+            ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/contrib/{$name}": ["type:drupal-drush"]
+            "drush/Commands/{$name}": ["type:drupal-drush"]
+        },
+        "drupal-scaffold": {
+            "initial": {
+                ".editorconfig": "../.editorconfig",
+                ".gitattributes": "../.gitattributes"
+            }
         }
     }
 }
